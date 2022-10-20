@@ -126,7 +126,7 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
                 "user_id": user_id,
                 "username": username,
                 "lang": lang,
-                "timestamp": timestamp,
+                "timestamp": timestamp.isoformat(),
             },
         )
 
