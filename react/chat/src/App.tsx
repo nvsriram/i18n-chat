@@ -30,8 +30,7 @@ const App = () => {
 
   useEffect(() => {
     if (!isLoggedIn || userID > 0) return;
-    
-    const newClient = new W3CWebSocket(`ws://${import.meta.env.SERVER_URL}/ws/chat/` + roomName + '/');
+    const newClient = new W3CWebSocket(`ws://${import.meta.env.VITE_SERVER_URL}/ws/chat/` + roomName + '/');
     newClient.onopen = () => {
       console.log("Websocket connected!");
       setClient(newClient);
@@ -132,6 +131,7 @@ const App = () => {
         room={roomName}
         userID={userID}
         username={username}
+        lang={lang}
         roomEvents={roomEvents}
         messages={messages} 
         avatars={avatars}

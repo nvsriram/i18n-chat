@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
+import TranslationSwitch from './TranslationSwitch';
 
-const Navbar: React.FC<{room: string, username: string, avatar: string}> = ({room, username, avatar}) => {
+const Navbar: React.FC<{room: string, username: string, avatar: string, shouldTranslate: boolean, setShouldTranslate: Dispatch<SetStateAction<boolean>>}> = ({room, username, avatar, shouldTranslate, setShouldTranslate}) => {
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 0,
@@ -23,6 +24,7 @@ const Navbar: React.FC<{room: string, username: string, avatar: string}> = ({roo
                         {username}
                     </Typography>
                 </div>
+                <TranslationSwitch shouldTranslate={shouldTranslate} setShouldTranslate={setShouldTranslate} />
             </Toolbar>
         </Paper>
     );

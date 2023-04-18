@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import SendIcon from '@mui/icons-material/Send';
@@ -19,11 +19,13 @@ const Chatroom: React.FC<{
     room: string,
     userID: number,
     username: string,
+    lang: string,
     roomEvents: IRoomEvent[],
     messages: IMessage[],
     avatars: IAvatar,
     onButtonClicked: (input: string) => void
-}> = ({room, userID, username, roomEvents, messages, avatars, onButtonClicked}) => {
+}> = ({room, userID, username, lang, roomEvents, messages, avatars, onButtonClicked}) => {
+    const [shouldTranslate, setShouldTranslate] = useState(false);
 
     useTitle(room);
 
@@ -47,10 +49,10 @@ const Chatroom: React.FC<{
                 alignItems: 'center',
             }}
         >
-            <Navbar room={room} username={username} avatar={avatars[username]}/>
+            <Navbar room={room} username={username} avatar={avatars[username]} shouldTranslate={shouldTranslate} setShouldTranslate={setShouldTranslate} />
             <Paper variant="outlined" sx={{ display:'flex', flexDirection: 'column', height:'100%', width: "100%", maxHeight: "100%", overflowY: "scroll", pb: 1, borderBottom: 'none' }}>
                 <Paper elevation={0} sx={{ position:'relative', display: 'flex', flexDirection: 'column', minHeight: "fit-content", width: "100%", justifyContent: 'flex-end', alignItems: 'center'}}>
-                    <MessageCard roomEvents={roomEvents} messages={messages} currentUser={username} avatars={avatars} />
+                    <MessageCard roomEvents={roomEvents} messages={messages} currentUser={username} lang={lang} avatars={avatars} shouldTranslate={shouldTranslate} />
                     <div ref={lastDivRef} aria-hidden />
                 </Paper>
             </Paper>

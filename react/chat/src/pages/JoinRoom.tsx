@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -8,13 +8,13 @@ import TextInput from '../components/TextInput';
 import { validateInputs } from '../helpers/ValidateInputs';
 import LanguageSelect from '../components/LanguageSelect';
 
-type setFunction<T> = (value: T) => void;
+type setFn<T> = Dispatch<SetStateAction<T>>;
 
 const JoinRoom: React.FC<{ 
-        setRoomName: setFunction<string>, 
-        setUsername: setFunction<string>,
-        setLang: setFunction<string>,
-        setIsLoggedIn: setFunction<boolean>
+        setRoomName: setFn<string>, 
+        setUsername: setFn<string>,
+        setLang: setFn<string>,
+        setIsLoggedIn: setFn<boolean>
     }> = ({ setRoomName, setUsername, setLang, setIsLoggedIn }) => {
     const setValues = (values: { [key: string]: { value: string } }) => {
         setRoomName(values["Room Name"].value);

@@ -16,6 +16,10 @@ export const validateInputs = (inputName: string, input: string) : string | null
                 return "Invalid username";
             }
             break;
+        case "Lang":
+            if (!input.trim()) {
+                return "Cannot be empty";
+            }
         default:
             if (!input) {
                 return " ";

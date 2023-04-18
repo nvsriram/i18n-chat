@@ -1,5 +1,5 @@
-import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import { Box, SelectChangeEvent } from '@mui/material';
+import React, { ChangeEvent, useState } from 'react';
 
 import { FormProvider } from '../helpers/FormContext';
 import { IFormInputs } from '../helpers/types';
@@ -27,7 +27,7 @@ const InputForm = (props: any) => {
         });
     };
     
-    const onChange: (event: React.ChangeEvent<HTMLInputElement>) => void = (event) => {
+    const onChange = (event: { target: { name: string, value: string }}) => {
         const newValue = event.target.value;
         const inputName = event.target.name;
         let is_valid = 0;

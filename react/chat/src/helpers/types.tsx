@@ -1,3 +1,6 @@
+import { SelectChangeEvent } from "@mui/material"
+import { ChangeEvent } from "react"
+
 export enum MSG_TYPES { 
   JOINED = 'joined', 
   MESSAGE = 'message', 
@@ -48,7 +51,7 @@ export interface IFormInputs {
 export interface IFormContext {
   inputs: IFormInputs,
   setInputInitialState: (inputName: string, initialValue?: string) => void,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange: (event: { target: { value: string, name: string } }) => void,
   isValid: number,
 };
   

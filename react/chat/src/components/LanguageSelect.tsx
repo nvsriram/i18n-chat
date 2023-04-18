@@ -1,5 +1,6 @@
-import { Select, MenuItem, SelectChangeEvent, InputLabel, FormControl } from "@mui/material";
-import { ChangeEvent, useEffect, useState } from "react"
+import { Select, MenuItem, SelectChangeEvent, InputLabel, FormControl, FormHelperText } from "@mui/material";
+import { useEffect, useState } from "react"
+import { useFormContext } from "../helpers/FormContext";
 
 type language = {
     code: "string",
@@ -9,15 +10,14 @@ type language = {
     ]
 }
 
-
 const LanguageSelect: React.FC<{}> = () => {
+    const formContext = useFormContext();
+
     const [languagesList, setLanguagesList] = useState<language[]>([]);
-    const [languageKey, setLanguageKey] = useState("en");
-    
-    const handleLanguageSelect = (e: SelectChangeEvent<string>) => {
-        setLanguageKey(e.target.value);
-        console.log(e.target.value);
-    } 
+
+    useEffect(() => {
+        formContext.setInputInitialState("Lang");
+    }, [formContext]);
 
     useEffect(()=> {
         fetch(`https://libretranslate.de/languages`)
@@ -28,14 +28,19 @@ const LanguageSelect: React.FC<{}> = () => {
     }, []);
 
     return (
-        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }}>
+        <FormControl variant="outlined" sx={{ m: 1, minWidth: 120 }} 
+            error={formContext.inputs["Lang"] && formContext.inputs["Lang"].invalid}>
             <InputLabel id="language-label">Language</InputLabel>
             <Select
                 labelId="language-label"
                 id="language-select"
-                value={languageKey}
                 label="Language"
-                onChange={handleLanguageSelect}
+                name="Lang"
+                value={("Lang" in formContext.inputs) ?
+                    formContext.inputs["Lang"].value
+                    : ''}
+                         
+                onChange={formContext.onChange}
                 >
                 {languagesList.map((language) => {
                     return (
@@ -45,6 +50,10 @@ const LanguageSelect: React.FC<{}> = () => {
                     )
                 })}
             </Select>
+            <FormHelperText> {("Lang" in formContext.inputs && formContext.inputs["Lang"].invalid) ?
+                    formContext.inputs["Lang"].invalidMsg
+                    : ' '
+                }</FormHelperText>
         </FormControl>
     );
 };
