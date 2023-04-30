@@ -82,7 +82,7 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         await self.create_room(self.room_name)
 
     # disconnect from group/channel name
-    async def disconnect(self, close_code):
+    async def disconnect(self):
         # if all users leave, then delete the room
         users = await self.get_room_users(self.room_name)
         if users == 0:

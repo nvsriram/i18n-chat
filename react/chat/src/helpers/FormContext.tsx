@@ -6,11 +6,11 @@ export const FormContext = createContext<IFormContext | null>(null);
 export const FormProvider = FormContext.Provider;
 
 export const useFormContext = () => {
-    const context = useContext(FormContext);
+  const context = useContext(FormContext);
 
-    if (!context) {
-        throw new Error("useFormContext should be used within FormProvider");
-    }
+  if (!context) {
+    throw new Error("useFormContext should be used within FormProvider");
+  }
 
-    return context;
+  return context;
 };
