@@ -1,11 +1,13 @@
-from enum import Enum
 import json
-from channels.generic.websocket import AsyncWebsocketConsumer
-from channels.db import database_sync_to_async
-from channels.auth import login
-from asgiref.sync import async_to_sync
 from datetime import datetime
-from .models import ChatUser, Room, Message
+from enum import Enum
+
+from asgiref.sync import async_to_sync
+from channels.auth import login
+from channels.db import database_sync_to_async
+from channels.generic.websocket import AsyncWebsocketConsumer
+
+from .models import ChatUser, Message, Room
 
 
 class MSG_TYPES(Enum):
@@ -82,7 +84,7 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
         await self.create_room(self.room_name)
 
     # disconnect from group/channel name
-    async def disconnect(self):
+    async def disconnect(self, code):
         # if all users leave, then delete the room
         users = await self.get_room_users(self.room_name)
         if users == 0:
@@ -147,7 +149,7 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
                     "user_id": user_id,
                     "username": username,
                     "lang": lang,
-                    "timestamp": timestamp.strftime("%d/%m %I:%M %p"),
+                    "timestamp": timestamp,
                 },
                 default=str,
             )

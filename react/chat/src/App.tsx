@@ -54,7 +54,6 @@ const App = () => {
       if (dataFromServer) {
         const { msg_type, message, user_id, username, lang, timestamp } =
           dataFromServer;
-        console.log(msg_type, user_id);
         // handle based on msg_type
         switch (msg_type) {
           case MSG_TYPES.JOINED:

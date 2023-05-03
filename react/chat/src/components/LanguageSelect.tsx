@@ -26,10 +26,7 @@ const LanguageSelect: FC<{}> = () => {
   useEffect(() => {
     fetch(`https://libretranslate.de/languages`)
       .then((res) => res.json())
-      .then((data) => {
-        setLanguagesList(data);
-        console.log(data);
-      });
+      .then((data) => setLanguagesList(data));
   }, []);
 
   return (

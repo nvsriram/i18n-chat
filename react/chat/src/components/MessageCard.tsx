@@ -26,7 +26,7 @@ const MessageCard: FC<{
 }): any => {
   if (messages.length === 0) {
     return (
-      <Paper elevation={0} sx={{ position: "absolute", bottom: 0 }}>
+      <Paper elevation={0} sx={{ marginTop: "auto" }}>
         <Typography
           component="p"
           variant="caption"

@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import { Dispatch, FC, SetStateAction } from "react";
+import Logo from "../assets/logo.png";
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
 import LanguageSelect from "../components/LanguageSelect";
@@ -25,15 +25,18 @@ const JoinRoom: FC<{
   return (
     <Box
       sx={{
-        marginTop: 8,
+        paddingTop: 8,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <Typography component="h1" variant="h5" sx={{ mb: 1 }}>
-        i18n ChatRoom
-      </Typography>
+      <img
+        src={Logo}
+        alt="logo"
+        height={125}
+        style={{ marginBottom: "1rem" }}
+      />
       <InputForm onSubmit={setValues} validateInputs={validateInputs}>
         <TextInput
           variant="outlined"

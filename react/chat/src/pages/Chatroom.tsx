@@ -65,42 +65,29 @@ const Chatroom: FC<{
         sx={{
           display: "flex",
           flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "center",
           height: "100%",
           width: "100%",
-          maxHeight: "100%",
-          overflowY: "scroll",
           pb: 1,
           borderBottom: "none",
         }}
       >
-        <Paper
-          elevation={0}
-          sx={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            minHeight: "fit-content",
-            width: "100%",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          <MessageCard
-            roomEvents={roomEvents}
-            messages={messages}
-            currentUser={username}
-            lang={lang}
-            avatars={avatars}
-            shouldTranslate={shouldTranslate}
-          />
-          <div ref={lastDivRef} aria-hidden />
-        </Paper>
+        <MessageCard
+          roomEvents={roomEvents}
+          messages={messages}
+          currentUser={username}
+          lang={lang}
+          avatars={avatars}
+          shouldTranslate={shouldTranslate}
+        />
+        <div ref={lastDivRef} aria-hidden />
       </Paper>
       <InputForm
         onSubmit={setValue}
         validateInputs={validateInputs}
         resetOnSubmit={true}
-        sx={{ width: "100%", mx: 2, mt: 0, mb: 3, px: 2 }}
+        sx={{ width: "100%", mx: 2, mt: "auto", mb: 3, px: 2 }}
       >
         <Grid container spacing={0.5} justifyContent="flex-end">
           <Grid
