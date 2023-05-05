@@ -1,8 +1,9 @@
 import SendIcon from "@mui/icons-material/Send";
 import { Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import * as COLORS from "@mui/material/colors";
 import { Container } from "@mui/system";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useMemo, useRef, useState } from "react";
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
 import MessageCard from "../components/MessageCard";
@@ -39,6 +40,25 @@ const Chatroom: FC<{
     onButtonClicked(input["Message"].value);
   };
 
+  const background = useMemo(() => {
+    const totalLangs = new Set([
+      ...roomEvents.map((roomEvent) => roomEvent.lang),
+    ]).size;
+    if (totalLangs === 1) return COLORS.grey[500];
+
+    const colors = Object.keys(COLORS).map((color: string) => {
+      return Object(COLORS)[color][800];
+    });
+    let colorStr = "";
+    let prefix = "";
+    colors.slice(0, totalLangs).forEach((color) => {
+      if (!color) return;
+      colorStr += prefix + color;
+      prefix = ", ";
+    });
+    return `linear-gradient(45deg, ${colorStr})`;
+  }, [roomEvents]);
+
   useEffect(() => {
     lastDivRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [roomEvents]);
@@ -68,6 +88,7 @@ const Chatroom: FC<{
           justifyContent: "flex-end",
           alignItems: "center",
           height: "100%",
+          background: background,
           width: "100%",
           pb: 1,
           borderBottom: "none",

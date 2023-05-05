@@ -26,11 +26,14 @@ const MessageCard: FC<{
 }): any => {
   if (messages.length === 0) {
     return (
-      <Paper elevation={0} sx={{ marginTop: "auto" }}>
+      <Paper
+        elevation={0}
+        sx={{ marginTop: "auto", background: "transparent" }}
+      >
         <Typography
           component="p"
           variant="caption"
-          style={{ textAlign: "center" }}
+          style={{ textAlign: "center", color: "#fff" }}
         >
           {"Start messaging! 🎉"}
         </Typography>
@@ -43,7 +46,12 @@ const MessageCard: FC<{
 
     if (roomEvent.msg_type === MSG_TYPES.JOINED) {
       return (
-        <Typography component="p" variant="body2" key={idx} sx={{ my: 2 }}>
+        <Typography
+          component="p"
+          variant="body2"
+          key={idx}
+          sx={{ my: 2, color: "#fff" }}
+        >
           {roomEvent.username} is in the chat! 🎉
         </Typography>
       );
@@ -60,6 +68,8 @@ const MessageCard: FC<{
           my: 0.2,
           boxShadow: "none",
           ml: isCurrentUser ? "auto" : 2,
+          background: "transparent",
+          color: "#fff",
         }}
         key={idx}
       >
