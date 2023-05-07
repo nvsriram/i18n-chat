@@ -44,14 +44,13 @@ const Chatroom: FC<{
     const totalLangs = new Set([
       ...roomEvents.map((roomEvent) => roomEvent.lang),
     ]).size;
-    if (totalLangs === 1) return COLORS.grey[500];
 
     const colors = Object.keys(COLORS).map((color: string) => {
       return Object(COLORS)[color][800];
     });
     let colorStr = "";
     let prefix = "";
-    colors.slice(0, totalLangs).forEach((color) => {
+    colors.slice(0, totalLangs + 1).forEach((color) => {
       if (!color) return;
       colorStr += prefix + color;
       prefix = ", ";
@@ -93,6 +92,7 @@ const Chatroom: FC<{
           pb: 1,
           borderBottom: "none",
         }}
+        square
       >
         <MessageCard
           roomEvents={roomEvents}

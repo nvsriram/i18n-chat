@@ -1,4 +1,5 @@
 import { Paper, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import { Component, FC } from "react";
 import TimeAgo, { TimeAgoProps } from "timeago-react";
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "../helpers/types";
@@ -83,7 +84,8 @@ const MessageCard: FC<{
             p: 1.5,
             mx: 0.5,
             overflowWrap: "break-word",
-            bgcolor: isCurrentUser ? "#2196F3" : "#9E9E9E",
+            bgcolor: isCurrentUser ? "primary.main" : grey[800],
+            color: "#fff",
           }}
         >
           <MessageText

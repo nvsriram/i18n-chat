@@ -17,7 +17,7 @@ const Navbar: FC<{
   return (
     <Paper
       elevation={trigger ? 4 : 2}
-      sx={{ bgcolor: "primary.main", width: "100%" }}
+      sx={{ bgcolor: "primary.main", width: "100%", color: "#fff" }}
       square
     >
       <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 3fr 1fr" }}>
