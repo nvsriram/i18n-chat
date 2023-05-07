@@ -40,10 +40,13 @@ const Chatroom: FC<{
     onButtonClicked(input["Message"].value);
   };
 
-  const background = useMemo(() => {
+  const [background, backgroundSize] = useMemo(() => {
     const totalLangs = new Set([
       ...roomEvents.map((roomEvent) => roomEvent.lang),
     ]).size;
+    const backgroundSize = `${(totalLangs + 1) * 200}% ${
+      (totalLangs + 1) * 200
+    }%`;
 
     const colors = Object.keys(COLORS).map((color: string) => {
       return Object(COLORS)[color][800];
@@ -55,7 +58,7 @@ const Chatroom: FC<{
       colorStr += prefix + color;
       prefix = ", ";
     });
-    return `linear-gradient(45deg, ${colorStr})`;
+    return [`linear-gradient(45deg, ${colorStr})`, backgroundSize];
   }, [roomEvents]);
 
   useEffect(() => {
@@ -87,10 +90,12 @@ const Chatroom: FC<{
           justifyContent: "flex-end",
           alignItems: "center",
           height: "100%",
-          background: background,
           width: "100%",
           pb: 1,
           borderBottom: "none",
+          background,
+          backgroundSize,
+          animation: "gradient 10s ease infinite",
         }}
         square
       >
