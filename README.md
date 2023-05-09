@@ -17,6 +17,7 @@ Look no further as this web application does exactly that! ;)
 - Translates in real-time all other chat messages to chosen preferred language regardless of the source language of the message
 - Supports creation of multiple chat rooms with multiple users at the same time without needing to sign-in
 - Generates a unique avatar based on the username to provide visual aid in the chatroom
+- Animated chat background that changes based on the number of active languages in the chatroom
 - Deletes the chatroom along with all its chat messages once the chatroom is inactive (when all users have left the chatroom) to ensure no user privacy is breached
 
 ## 💻 Tech Stack
