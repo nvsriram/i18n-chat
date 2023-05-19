@@ -22,51 +22,51 @@ Look no further as this web application does exactly that! ;)
 
 ## 💻 Tech Stack
 
-<ol>
- <li><details>
-  <summary>Backend</summary>
 
-  - The backend is setup using Django
-  - It also uses [Django Channels](https://channels.readthedocs.io/en/stable/) to make use of WebSockets
-  - Models:
-    | Name         | Description                     | Fields                                                        
-    | ------------ | ------------------------------- | --
-    | `ChatUser`   | This represents the chat user.  | `name`: username of the chat user in the chat room.           
-    |              |                                 | `lang`: chosen preferred langauge of the user.                
-    | `Message`    | This represents a chat message. | `author`: user who posted the chat message.                   
-    |              |                                 | `room`: name of the `Room` where the chat message was posted. 
-    |              |                                 | `content`: text content of the chat message.                  
-    |              |                                 | `lang`: chosen preferred langauge of the user.                
-    |              |                                 | `timestamp`: backend server timestamp of the received message.
-    | `Room`       | This represents a chat room.    | `name`:  identifier of the chat room.                         
-    |              |                                 | `users`: list of `ChatUser`s that are a part of the chat room.
-  - Websocket API route: `/ws/chat/<Room Name>`
-  - On `connect`:
-    - Creates chat room if not done so previously
-    - Adds the user to the chat room group
-  - On `disconnect`:
-    - Removes the user from the chat room group
-    - Deletes the chat room if all users have left the chat room
-  - On `send`:
-    - Sends JSON data with `msg_type` ("joined" | "leave" | "message"), `message` (text content if "message" `msg_type`), `user_id`, `username`, `lang` (chosen preferred language), `timestamp` (backend server timestamp of event)
-  - On `receive`:
-    - Performs the appropriate action based on the `msg_type` of the incoming JSON data
-    - Transmits the received event to the entire chat room by performing a `send`
-    </details></li>
-    <li><details>
-    <summary>Frontend</summary>
-    
-    - The frontend is setup using React - Typescript using [Vite](https://vitejs.dev/) as a SPA.
-    - The `JoinRoom` component allows the user to enter the chat room they wish to join (or create), their name, and their preferred language and join the chat room.
-    - The `Chatroom` component allows the user to chat and displays the chat room events and translated chat messages of everyone else in the chat room. Users can optionally toggle the Translation switch to have the chat messages be displayed without translation.
-     
-    </details></li>
-    <li><details><summary>Database</summary>
-    
-     - Currently the database is a SQLite3 DB
-     - The database would only need to store the messages and events for a single chat room session. Hence, high database scalability is not a requirement.
-     </details></li>
-   </ol>
+<details>
+ <summary>Backend</summary>
+
+ - The backend is setup using Django
+ - It also uses [Django Channels](https://channels.readthedocs.io/en/stable/) to make use of WebSockets
+ - Models:
+   | Name         | Description                     | Fields                                                        
+   | ------------ | ------------------------------- | --
+   | `ChatUser`   | This represents the chat user.  | `name`: username of the chat user in the chat room.           
+   |              |                                 | `lang`: chosen preferred langauge of the user.                
+   | `Message`    | This represents a chat message. | `author`: user who posted the chat message.                   
+   |              |                                 | `room`: name of the `Room` where the chat message was posted. 
+   |              |                                 | `content`: text content of the chat message.                  
+   |              |                                 | `lang`: chosen preferred langauge of the user.                
+   |              |                                 | `timestamp`: backend server timestamp of the received message.
+   | `Room`       | This represents a chat room.    | `name`:  identifier of the chat room.                         
+   |              |                                 | `users`: list of `ChatUser`s that are a part of the chat room.
+ - Websocket API route: `/ws/chat/<Room Name>`
+ - On `connect`:
+   - Creates chat room if not done so previously
+   - Adds the user to the chat room group
+ - On `disconnect`:
+   - Removes the user from the chat room group
+   - Deletes the chat room if all users have left the chat room
+ - On `send`:
+   - Sends JSON data with `msg_type` ("joined" | "leave" | "message"), `message` (text content if "message" `msg_type`), `user_id`, `username`, `lang` (chosen preferred language), `timestamp` (backend server timestamp of event)
+ - On `receive`:
+   - Performs the appropriate action based on the `msg_type` of the incoming JSON data
+   - Transmits the received event to the entire chat room by performing a `send`
+   </details>
+   <details>
+   <summary>Frontend</summary>
+
+   - The frontend is setup using React - Typescript using [Vite](https://vitejs.dev/) as a SPA.
+   - The `JoinRoom` component allows the user to enter the chat room they wish to join (or create), their name, and their preferred language and join the chat room.
+   - The `Chatroom` component allows the user to chat and displays the chat room events and translated chat messages of everyone else in the chat room. Users can optionally toggle the Translation switch to have the chat messages be displayed without translation.
+
+   </details>
+   <details><summary>Database</summary>
+
+    - Currently the database is a SQLite3 DB
+    - The database would only need to store the messages and events for a single chat room session. Hence, high database scalability is not a requirement.
+    </details>
+
     
   ## 🛠️ Workflow
 
