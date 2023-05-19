@@ -7,7 +7,7 @@
 - Most chatroom applications have very limited multi-lingual support.
 - The ones which have more support usually require you to install their app, or sign up, or go through an elaborate onboarding process
 
-_What if all you wanted to do was practice your Duolingo skills with your friend(s) via a simple web application that is easy to setup and does not store any of your potentially embarassing linguistic efforts?_ :wink:
+_What if all you wanted to do was practice your Duolingo skills with your friend(s) via a simple web application that is easy to setup and does not store any of your potentially embarrassing linguistic efforts?_ :wink:
 
 Look no further as this web application does exactly that! ;)
 
