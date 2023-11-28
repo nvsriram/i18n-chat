@@ -1,4 +1,4 @@
-# i18n Chat
+![banner](https://github.com/nvsriram/i18n-chat/assets/50625504/8a4d3d85-0597-4948-a214-c94ce1834223)
 
  A real-time asynchronous chat application that transcends language barriers
 
