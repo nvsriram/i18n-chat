@@ -1,3 +1,5 @@
+import { personas } from "@dicebear/collection";
+import { createAvatar } from "@dicebear/core";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useEffect, useMemo, useState } from "react";
@@ -23,9 +25,10 @@ const App = () => {
       ...new Set(roomEvents.map((roomEvent) => roomEvent.username)),
     ];
     users.forEach((user) => {
-      newAvatars[
-        user
-      ] = `https://avatars.dicebear.com/api/personas/${user}.svg`;
+      newAvatars[user] = createAvatar(personas, {
+        size: 40,
+        seed: user,
+      }).toDataUriSync();
     });
     return newAvatars;
   }, [roomEvents]);
