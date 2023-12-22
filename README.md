@@ -94,8 +94,8 @@ Look no further as this web application does exactly that! ;)
 1. Navigate to the `react/chat` directory and install all dependencies using `npm install`
 2. Create a `.env` file and add the following to it:
 
-```
-VITE_SERVER_URL='127.0.0.1:8000' // replace it with the backend server URL
+```bash
+VITE_SERVER_URL='127.0.0.1:8000' # replace it with the backend server URL
 ```
 
 3. Run `npm run dev` to start the frontend server (defaults to `http://localhost:5173`)
