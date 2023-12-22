@@ -96,6 +96,7 @@ const Chatroom: FC<{
           background,
           backgroundSize,
           animation: "gradient 10s ease infinite",
+          borderRadius: "0 0 1rem 1rem",
         }}
         square
       >
