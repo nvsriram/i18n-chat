@@ -125,18 +125,15 @@ const App = () => {
   }
 
   return (
-    <Container component="main" sx={{ height: "100%" }}>
-      <CssBaseline enableColorScheme />
-      <Chatroom
-        room={roomName}
-        username={username}
-        lang={lang}
-        roomEvents={roomEvents}
-        messages={messages}
-        avatars={avatars}
-        onButtonClicked={sendMessage}
-      />
-    </Container>
+    <Chatroom
+      room={roomName}
+      username={username}
+      lang={lang}
+      roomEvents={roomEvents}
+      messages={messages}
+      avatars={avatars}
+      onButtonClicked={sendMessage}
+    />
   );
 };
 
