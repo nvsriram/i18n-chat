@@ -1,5 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import * as COLORS from "@mui/material/colors";
 import { Container } from "@mui/system";
@@ -66,8 +66,8 @@ const Chatroom: FC<{
   }, [roomEvents]);
 
   return (
-    <Container
-      maxWidth="lg"
+    <Box
+      maxWidth="xl"
       sx={{
         display: "flex",
         height: "100%",
@@ -83,7 +83,7 @@ const Chatroom: FC<{
         setShouldTranslate={setShouldTranslate}
       />
       <Paper
-        variant="outlined"
+        variant="elevation"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -146,7 +146,7 @@ const Chatroom: FC<{
           </Grid>
         </Grid>
       </InputForm>
-    </Container>
+    </Box>
   );
 };
 
