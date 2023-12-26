@@ -1,13 +1,19 @@
 import { Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { IRoomEvent } from "../helpers/types";
 import { LIBRE_BASE_URL } from "../helpers/constants";
+import { IRoomEvent } from "../helpers/types";
 
-const MessageText: FC<{
+interface IMessageText {
   roomEvent: IRoomEvent;
   lang: string;
   shouldTranslate: boolean;
-}> = ({ roomEvent, lang, shouldTranslate }): any => {
+}
+
+const MessageText: FC<IMessageText> = ({
+  roomEvent,
+  lang,
+  shouldTranslate,
+}): any => {
   const [text, setText] = useState(roomEvent.message);
 
   const translateText = async (roomEvent: IRoomEvent) => {

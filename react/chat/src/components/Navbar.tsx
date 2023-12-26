@@ -1,14 +1,23 @@
 import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
+import { setFn } from "../helpers/types";
 import TranslationSwitch from "./TranslationSwitch";
 
-const Navbar: FC<{
+interface INavbar {
   room: string;
   username: string;
   avatar: string;
   shouldTranslate: boolean;
-  setShouldTranslate: Dispatch<SetStateAction<boolean>>;
-}> = ({ room, username, avatar, shouldTranslate, setShouldTranslate }) => {
+  setShouldTranslate: setFn<boolean>;
+}
+
+const Navbar: FC<INavbar> = ({
+  room,
+  username,
+  avatar,
+  shouldTranslate,
+  setShouldTranslate,
+}) => {
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,

@@ -10,14 +10,16 @@ const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
   new (props: any): Component<TimeAgoProps>;
 };
 
-const MessageCard: FC<{
+interface IMessageCard {
   roomEvents: IRoomEvent[];
   messages: IMessage[];
   currentUser: string | number;
   lang: string;
   avatars: IAvatar;
   shouldTranslate: boolean;
-}> = ({
+}
+
+const MessageCard: FC<IMessageCard> = ({
   roomEvents,
   messages,
   currentUser,
