@@ -14,7 +14,7 @@ const App = () => {
   const [userID, setUserID] = useState(-1);
   const [username, setUsername] = useState("");
   const [lang, setLang] = useState("en");
-  const [client, setClient] = useState<any>(null);
+  const [client, setClient] = useState<W3CWebSocket | null>(null);
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [roomEvents, setRoomEvents] = useState<IRoomEvent[]>([]);
@@ -102,6 +102,9 @@ const App = () => {
   }, [isLoggedIn, lang, username, roomName, userID]);
 
   const sendMessage = (input: string) => {
+    if (client == null) {
+      return;
+    }
     client.send(
       JSON.stringify({
         msg_type: MSG_TYPES.MESSAGE,
