@@ -9,12 +9,19 @@ import { validateInputs } from "../helpers/ValidateInputs";
 
 type setFn<T> = Dispatch<SetStateAction<T>>;
 
-const JoinRoom: FC<{
+interface JoinRoomProps {
   setRoomName: setFn<string>;
   setUsername: setFn<string>;
   setLang: setFn<string>;
   setIsLoggedIn: setFn<boolean>;
-}> = ({ setRoomName, setUsername, setLang, setIsLoggedIn }) => {
+}
+
+const JoinRoom: FC<JoinRoomProps> = ({
+  setRoomName,
+  setUsername,
+  setLang,
+  setIsLoggedIn,
+}) => {
   const setValues = (values: { [key: string]: { value: string } }) => {
     setRoomName(values["Room Name"].value);
     setUsername(values["Username"].value);
