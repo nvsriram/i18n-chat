@@ -1,7 +1,5 @@
 import { personas } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
 import { useEffect, useMemo, useState } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./helpers/types";
