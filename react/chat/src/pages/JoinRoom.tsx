@@ -1,22 +1,21 @@
 import Box from "@mui/material/Box";
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import Logo from "../assets/logo.png";
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
 import LanguageSelect from "../components/LanguageSelect";
 import TextInput from "../components/TextInput";
 import { validateInputs } from "../helpers/ValidateInputs";
+import { setFn } from "../helpers/types";
 
-type setFn<T> = Dispatch<SetStateAction<T>>;
-
-interface JoinRoomProps {
+interface IJoinRoom {
   setRoomName: setFn<string>;
   setUsername: setFn<string>;
   setLang: setFn<string>;
   setIsLoggedIn: setFn<boolean>;
 }
 
-const JoinRoom: FC<JoinRoomProps> = ({
+const JoinRoom: FC<IJoinRoom> = ({
   setRoomName,
   setUsername,
   setLang,
