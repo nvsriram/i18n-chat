@@ -2,7 +2,6 @@ import SendIcon from "@mui/icons-material/Send";
 import { Box, Grid } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import * as COLORS from "@mui/material/colors";
-import { Container } from "@mui/system";
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
@@ -67,12 +66,14 @@ const Chatroom: FC<{
 
   return (
     <Box
-      maxWidth="xl"
       sx={{
         display: "flex",
         height: "100%",
         flexDirection: "column",
         alignItems: "center",
+        background,
+        backgroundSize,
+        animation: "gradient 10s ease infinite",
       }}
     >
       <Navbar
@@ -85,6 +86,7 @@ const Chatroom: FC<{
       <Paper
         variant="elevation"
         sx={{
+          boxShadow: "none",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
@@ -93,10 +95,7 @@ const Chatroom: FC<{
           width: "100%",
           pb: 1,
           borderBottom: "none",
-          background,
-          backgroundSize,
-          animation: "gradient 10s ease infinite",
-          borderRadius: "0 0 1rem 1rem",
+          background: "transparent",
         }}
         square
       >
@@ -114,9 +113,34 @@ const Chatroom: FC<{
         onSubmit={setValue}
         validateInputs={validateInputs}
         resetOnSubmit={true}
-        sx={{ width: "100%", mx: 2, mt: "auto", mb: 3, px: 2 }}
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          mt: "auto",
+        }}
       >
-        <Grid container spacing={0.5} justifyContent="flex-end">
+        <Grid
+          container
+          spacing={0.5}
+          justifyContent="flex-end"
+          px={2}
+          width={"95%"}
+          sx={{
+            backgroundColor: "rgba(255,255,255,0.3)",
+            "&:hover": {
+              backgroundColor: "rgba(255,255,255,0.6)",
+            },
+            "&:focus-within": {
+              backgroundColor: "rgba(255,255,255,0.6)",
+            },
+            "&:active-within": {
+              backgroundColor: "rgba(255,255,255,0.6)",
+            },
+            borderRadius: "2rem",
+          }}
+        >
           <Grid
             item
             xs={11}
@@ -141,7 +165,12 @@ const Chatroom: FC<{
           </Grid>
           <Grid item xs={1}>
             <FormSubmit variant="contained" color="primary">
-              <SendIcon sx={{ height: "1em", width: "1em" }} />
+              <SendIcon
+                sx={{
+                  height: "1em",
+                  width: "1em",
+                }}
+              />
             </FormSubmit>
           </Grid>
         </Grid>
