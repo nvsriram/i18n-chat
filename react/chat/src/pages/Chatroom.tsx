@@ -12,7 +12,7 @@ import { validateInputs } from "../helpers/ValidateInputs";
 import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "../helpers/types";
 import useTitle from "../helpers/useTitle";
 
-const Chatroom: FC<{
+interface ChatroomProps {
   room: string;
   username: string;
   lang: string;
@@ -20,7 +20,9 @@ const Chatroom: FC<{
   messages: IMessage[];
   avatars: IAvatar;
   onButtonClicked: (input: string) => void;
-}> = ({
+}
+
+const Chatroom: FC<ChatroomProps> = ({
   room,
   username,
   lang,
