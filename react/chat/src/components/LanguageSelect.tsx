@@ -7,8 +7,9 @@ import {
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useFormContext } from "../helpers/FormContext";
+import { LIBRE_BASE_URL } from "../helpers/constants";
 
-type language = {
+type Language = {
   code: "string";
   name: "string";
   targets: ["string"];
@@ -17,14 +18,14 @@ type language = {
 const LanguageSelect: FC<{}> = () => {
   const formContext = useFormContext();
 
-  const [languagesList, setLanguagesList] = useState<language[]>([]);
+  const [languagesList, setLanguagesList] = useState<Language[]>([]);
 
   useEffect(() => {
     formContext.setInputInitialState("Lang");
   }, [formContext]);
 
   useEffect(() => {
-    fetch(`https://libretranslate.de/languages`)
+    fetch(`${LIBRE_BASE_URL}/languages`)
       .then((res) => res.json())
       .then((data) => setLanguagesList(data));
   }, []);

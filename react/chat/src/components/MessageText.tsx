@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IRoomEvent } from "../helpers/types";
+import { LIBRE_BASE_URL } from "../helpers/constants";
 
 const MessageText: FC<{
   roomEvent: IRoomEvent;
@@ -10,7 +11,7 @@ const MessageText: FC<{
   const [text, setText] = useState(roomEvent.message);
 
   const translateText = async (roomEvent: IRoomEvent) => {
-    const data = await fetch(`https://libretranslate.de/translate`, {
+    const data = await fetch(`${LIBRE_BASE_URL}/translate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
