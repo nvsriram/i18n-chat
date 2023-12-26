@@ -8,12 +8,7 @@ import {
 import { FC, useEffect, useState } from "react";
 import { useFormContext } from "../helpers/FormContext";
 import { LIBRE_BASE_URL } from "../helpers/constants";
-
-type Language = {
-  code: "string";
-  name: "string";
-  targets: ["string"];
-};
+import { Language } from "../helpers/types";
 
 const LanguageSelect: FC<{}> = () => {
   const formContext = useFormContext();

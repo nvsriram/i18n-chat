@@ -1,8 +1,18 @@
+import { Dispatch, SetStateAction } from "react";
+
 export enum MSG_TYPES {
   JOINED = "joined",
   MESSAGE = "message",
   LEAVE = "leave",
 }
+
+export type setFn<T> = Dispatch<SetStateAction<T>>;
+
+export type Language = {
+  code: "string";
+  name: "string";
+  targets: ["string"];
+};
 
 export interface IMessage {
   message: string;
@@ -22,19 +32,6 @@ export interface IRoomEvent {
 
 export interface IAvatar {
   [key: string]: string;
-}
-
-export interface ITextInput {
-  variant: "standard" | "filled" | "outlined";
-  color?: "primary" | "secondary" | "error" | "info" | "success" | "warning";
-  label: string;
-  id: string;
-  name: string;
-  type: string;
-  placeholder?: string;
-  removeHelperText?: boolean;
-  autoFocus?: boolean;
-  sx?: { [key: string]: string };
 }
 
 export interface IFormInputs {
