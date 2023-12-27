@@ -1,9 +1,21 @@
-import { Box } from "@mui/material";
-import { FormEvent, useState } from "react";
-import { FormProvider } from "../helpers/FormContext";
-import { IFormInputs } from "../helpers/types";
+import { Box, BoxProps } from "@mui/material";
+import { FC, FormEvent, useState } from "react";
+import { FormProvider } from "../contexts/FormContext";
+import { IFormInputs } from "../types";
 
-const InputForm = (props: any) => {
+interface IInputForm extends Omit<BoxProps, "onSubmit"> {
+  onSubmit: (inputs: IFormInputs) => void;
+  validateInputs: (inputName: string, input: string) => string | null;
+  resetOnSubmit?: boolean;
+}
+
+const InputForm: FC<IInputForm> = ({
+  children,
+  onSubmit,
+  validateInputs,
+  resetOnSubmit,
+  ...props
+}) => {
   const [inputs, setInputs] = useState<IFormInputs>({});
   const [isValid, setIsValid] = useState(0);
 
@@ -30,7 +42,7 @@ const InputForm = (props: any) => {
     const inputName = event.target.name;
     let is_valid = 0;
     setInputs((prevState) => {
-      const errMsg = props.validateInputs(inputName, newValue);
+      const errMsg = validateInputs(inputName, newValue);
       if (errMsg) {
         if (!prevState[inputName].invalid) {
           is_valid = -1;
@@ -69,8 +81,8 @@ const InputForm = (props: any) => {
     e.preventDefault();
     const is_valid = handleIsValid();
     if (is_valid === 0) {
-      props.onSubmit(inputs);
-      if (props.resetOnSubmit) {
+      onSubmit(inputs);
+      if (resetOnSubmit) {
         resetInputs("");
       }
     }
@@ -81,7 +93,7 @@ const InputForm = (props: any) => {
     let is_valid = 0;
     setInputs((prevState) => {
       Object.keys(prevState).forEach((key) => {
-        const errMsg = props.validateInputs(key, prevState[key].value);
+        const errMsg = validateInputs(key, prevState[key].value);
         if (errMsg) {
           --is_valid;
           prevState[key] = {
@@ -99,19 +111,14 @@ const InputForm = (props: any) => {
   return (
     <FormProvider
       value={{
-        onChange: onChange,
-        inputs: inputs,
-        isValid: isValid,
-        setInputInitialState: setInputInitialState,
+        onChange,
+        inputs,
+        isValid,
+        setInputInitialState,
       }}
     >
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        noValidate
-        sx={{ ...props.sx }}
-      >
-        {props.children}
+      <Box component="form" onSubmit={handleSubmit} noValidate {...props}>
+        {children}
       </Box>
     </FormProvider>
   );

@@ -1,20 +1,28 @@
-import Button from "@mui/material/Button";
-import { useContext } from "react";
-import { FormContext } from "../helpers/FormContext";
+import Button, { ButtonProps } from "@mui/material/Button";
+import { FC, useContext } from "react";
+import { FormContext } from "../contexts/FormContext";
 
-const FormSubmit = (props: any) => {
+interface IFormSubmit extends ButtonProps {}
+
+const FormSubmit: FC<IFormSubmit> = ({
+  fullWidth,
+  color,
+  children,
+  sx,
+  ...props
+}) => {
   const formContext = useContext(FormContext);
 
   return (
     <Button
       type="submit"
-      fullWidth={props.fullWidth}
-      color={props.color}
-      disabled={formContext && formContext?.isValid < 0}
-      sx={{ ...props.sx, my: 1 }}
+      fullWidth={fullWidth}
+      color={color}
+      disabled={formContext != null && formContext.isValid < 0}
+      sx={{ my: 1, ...sx }}
       {...props}
     >
-      {props.children}
+      {children}
     </Button>
   );
 };
