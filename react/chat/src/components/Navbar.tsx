@@ -1,6 +1,6 @@
 import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import { FC } from "react";
-import { setFn } from "../helpers/types";
+import { setFn } from "../types";
 import TranslationSwitch from "./TranslationSwitch";
 
 interface INavbar {
@@ -26,7 +26,12 @@ const Navbar: FC<INavbar> = ({
   return (
     <Paper
       elevation={trigger ? 4 : 2}
-      sx={{ bgcolor: "primary.main", width: "100%", color: "#fff" }}
+      sx={{
+        bgcolor: "primary.main",
+        width: "100%",
+        color: "#fff",
+        zIndex: 10,
+      }}
       square
     >
       <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 3fr 1fr" }}>
