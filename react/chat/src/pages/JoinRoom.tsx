@@ -6,7 +6,7 @@ import InputForm from "../components/InputForm";
 import LanguageSelect from "../components/LanguageSelect";
 import TextInput from "../components/TextInput";
 import { validateInputs } from "../helpers/ValidateInputs";
-import { setFn } from "../helpers/types";
+import { IFormInputs, setFn } from "../types";
 
 interface IJoinRoom {
   setRoomName: setFn<string>;
@@ -21,10 +21,10 @@ const JoinRoom: FC<IJoinRoom> = ({
   setLang,
   setIsLoggedIn,
 }) => {
-  const setValues = (values: { [key: string]: { value: string } }) => {
-    setRoomName(values["Room Name"].value);
-    setUsername(values["Username"].value);
-    setLang(values["Lang"].value);
+  const setValues = (inputs: IFormInputs) => {
+    setRoomName(inputs["Room Name"].value);
+    setUsername(inputs["Username"].value);
+    setLang(inputs["Lang"].value);
     setIsLoggedIn(true);
   };
 
