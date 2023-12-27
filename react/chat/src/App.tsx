@@ -2,7 +2,7 @@ import { personas } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 import { useEffect, useMemo, useState } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./helpers/types";
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./types";
 import Chatroom from "./pages/Chatroom";
 import JoinRoom from "./pages/JoinRoom";
 
@@ -50,50 +50,60 @@ const App = () => {
       }
     };
 
-    newClient.onmessage = (message: any) => {
-      const dataFromServer = JSON.parse(message.data);
-      if (dataFromServer) {
-        const { msg_type, message, user_id, username, lang, timestamp } =
-          dataFromServer;
-        // handle based on msg_type
-        switch (msg_type) {
-          case MSG_TYPES.JOINED:
-            setRoomEvents((prevEvents) => [
-              ...prevEvents,
-              {
-                msg_type: msg_type,
-                timestamp: timestamp,
-                username: username,
-              },
-            ]);
-            if (userID === -1) {
-              setUserID(user_id);
-            }
-            break;
-          case MSG_TYPES.MESSAGE:
-            setRoomEvents((prevEvents) => [
-              ...prevEvents,
-              {
-                msg_type: msg_type,
-                message: message,
-                timestamp: timestamp,
-                user_id: user_id,
-                username: username,
-                lang: lang,
-              },
-            ]);
-            setMessages((prevMessages) => [
-              ...prevMessages,
-              {
-                message: message,
-                timestamp: timestamp,
-                username: username,
-                lang: lang,
-              },
-            ]);
-            break;
-          default:
-            console.log("unexpected msg_type", msg_type);
+    newClient.onmessage = (message) => {
+      if (typeof message.data != "string") {
+        console.log("invalid message data");
+        return;
+      }
+      try {
+        const dataFromServer = JSON.parse(message.data);
+        if (dataFromServer) {
+          const { msg_type, message, user_id, username, lang, timestamp } =
+            dataFromServer;
+          // handle based on msg_type
+          switch (msg_type) {
+            case MSG_TYPES.JOINED:
+              setRoomEvents((prevEvents) => [
+                ...prevEvents,
+                {
+                  msg_type: msg_type,
+                  timestamp: timestamp,
+                  username: username,
+                },
+              ]);
+              if (userID === -1) {
+                setUserID(user_id);
+              }
+              break;
+            case MSG_TYPES.MESSAGE:
+              setRoomEvents((prevEvents) => [
+                ...prevEvents,
+                {
+                  msg_type: msg_type,
+                  message: message,
+                  timestamp: timestamp,
+                  user_id: user_id,
+                  username: username,
+                  lang: lang,
+                },
+              ]);
+              setMessages((prevMessages) => [
+                ...prevMessages,
+                {
+                  message: message,
+                  timestamp: timestamp,
+                  username: username,
+                  lang: lang,
+                },
+              ]);
+              break;
+            default:
+              console.log("unexpected msg_type", msg_type);
+          }
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err.message);
         }
       }
     };
