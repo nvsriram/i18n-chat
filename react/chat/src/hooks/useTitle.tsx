@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const useTitle = (title: string) => {
+export const useTitle = (title: string) => {
   const documentDefined = typeof document !== "undefined";
   const originalTitle = useRef(documentDefined ? document.title : null);
 
@@ -16,5 +16,3 @@ const useTitle = (title: string) => {
     };
   }, []);
 };
-
-export default useTitle;
