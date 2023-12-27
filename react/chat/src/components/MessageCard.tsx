@@ -2,7 +2,7 @@ import { Paper, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Component, FC } from "react";
 import TimeAgo, { TimeAgoProps } from "timeago-react";
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "../helpers/types";
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "../types";
 import MessageText from "./MessageText";
 import UserAvatar from "./UserAvatar";
 
@@ -26,7 +26,7 @@ const MessageCard: FC<IMessageCard> = ({
   lang,
   avatars,
   shouldTranslate,
-}): any => {
+}) => {
   if (messages.length === 0) {
     return (
       <Paper
@@ -44,68 +44,76 @@ const MessageCard: FC<IMessageCard> = ({
     );
   }
 
-  return roomEvents.map((roomEvent, idx) => {
-    const isCurrentUser = currentUser === roomEvent.username;
+  return (
+    <>
+      {roomEvents.map((roomEvent, idx) => {
+        const isCurrentUser = currentUser === roomEvent.username;
 
-    if (roomEvent.msg_type === MSG_TYPES.JOINED) {
-      return (
-        <Typography
-          component="p"
-          variant="body2"
-          key={idx}
-          sx={{ my: 2, color: "#fff" }}
-        >
-          {roomEvent.username} is in the chat! 🎉
-        </Typography>
-      );
-    }
-    return (
-      <Paper
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignSelf: "flex-start",
-          alignItems: "center",
-          justifyContent: isCurrentUser ? "flex-end" : "flex-start",
-          mx: 2,
-          my: 0.2,
-          boxShadow: "none",
-          ml: isCurrentUser ? "auto" : 2,
-          background: "transparent",
-          color: "#fff",
-        }}
-        key={idx}
-      >
-        <UserAvatar
-          username={roomEvent.username}
-          avatar={avatars[roomEvent.username]}
-          sx={{ order: isCurrentUser ? 1 : 0 }}
-        />
-        <Paper
-          sx={{
-            p: 1.5,
-            mx: 0.5,
-            overflowWrap: "break-word",
-            bgcolor: isCurrentUser ? "primary.main" : grey[800],
-            color: "#fff",
-          }}
-        >
-          <MessageText
-            roomEvent={roomEvent}
-            lang={lang}
-            shouldTranslate={shouldTranslate}
-          />
-        </Paper>
-        <Typography
-          component="p"
-          variant="caption"
-          sx={{ alignSelf: "flex-end", order: isCurrentUser ? -1 : 1, pb: 0.5 }}
-        >
-          <TimeAgoFixed datetime={roomEvent.timestamp} />
-        </Typography>
-      </Paper>
-    );
-  });
+        if (roomEvent.msg_type === MSG_TYPES.JOINED) {
+          return (
+            <Typography
+              component="p"
+              variant="body2"
+              key={idx}
+              sx={{ my: 2, color: "#fff" }}
+            >
+              {roomEvent.username} is in the chat! 🎉
+            </Typography>
+          );
+        }
+        return (
+          <Paper
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignSelf: "flex-start",
+              alignItems: "center",
+              justifyContent: isCurrentUser ? "flex-end" : "flex-start",
+              mx: 2,
+              my: 0.2,
+              boxShadow: "none",
+              ml: isCurrentUser ? "auto" : 2,
+              background: "transparent",
+              color: "#fff",
+            }}
+            key={idx}
+          >
+            <UserAvatar
+              username={roomEvent.username}
+              avatar={avatars[roomEvent.username]}
+              sx={{ order: isCurrentUser ? 1 : 0 }}
+            />
+            <Paper
+              sx={{
+                p: 1.5,
+                mx: 0.5,
+                overflowWrap: "break-word",
+                bgcolor: isCurrentUser ? "primary.main" : grey[800],
+                color: "#fff",
+              }}
+            >
+              <MessageText
+                roomEvent={roomEvent}
+                lang={lang}
+                shouldTranslate={shouldTranslate}
+              />
+            </Paper>
+            <Typography
+              component="p"
+              variant="caption"
+              sx={{
+                alignSelf: "flex-end",
+                order: isCurrentUser ? -1 : 1,
+                pb: 0.5,
+              }}
+            >
+              <TimeAgoFixed datetime={roomEvent.timestamp} />
+            </Typography>
+          </Paper>
+        );
+      })}
+    </>
+  );
 };
 
 export default MessageCard;
