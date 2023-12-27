@@ -1,48 +1,41 @@
-import TextField from "@mui/material/TextField";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { useEffect } from "react";
-import { useFormContext } from "../helpers/FormContext";
-import { ITextInput } from "../helpers/types";
+import { useFormContext } from "../hooks";
 
-const TextInput = (props: ITextInput) => {
+type ITextInput = TextFieldProps & {
+  name: string;
+  removeHelperText?: boolean;
+};
+
+const TextInput = ({ name, removeHelperText, sx, ...props }: ITextInput) => {
   const formContext = useFormContext();
 
   useEffect(() => {
-    formContext.setInputInitialState(props.name);
-  }, [formContext, props.name]);
+    formContext.setInputInitialState(name);
+  }, [formContext, name]);
 
   return (
     <TextField
-      variant={props.variant}
       margin="normal"
-      required={!props.removeHelperText}
       fullWidth
-      id={props.id}
-      label={props.label}
-      name={props.name}
-      type={props.type}
+      required={!removeHelperText}
+      name={name}
       error={
-        !props.removeHelperText &&
-        formContext.inputs[props.name] &&
-        formContext.inputs[props.name].invalid
+        !removeHelperText &&
+        formContext.inputs[name] &&
+        formContext.inputs[name].invalid
       }
       helperText={
-        props.removeHelperText!
+        removeHelperText!
           ? ""
-          : props.name in formContext.inputs &&
-            formContext.inputs[props.name].invalid
-          ? formContext.inputs[props.name].invalidMsg
+          : name in formContext.inputs && formContext.inputs[name].invalid
+          ? formContext.inputs[name].invalidMsg
           : " "
       }
-      placeholder={props.placeholder}
-      autoFocus={props.autoFocus}
-      value={
-        props.name in formContext.inputs
-          ? formContext.inputs[props.name].value
-          : ""
-      }
+      value={name in formContext.inputs ? formContext.inputs[name].value : ""}
       onChange={formContext.onChange}
-      sx={{ ...props.sx, mt: 0 }}
-      color={props.color}
+      sx={{ mt: 0, ...sx }}
+      {...props}
     />
   );
 };
