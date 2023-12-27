@@ -1,10 +1,16 @@
 import { FormControlLabel, Switch } from "@mui/material";
-import { ChangeEvent, Dispatch, FC, SetStateAction } from "react";
+import { ChangeEvent, FC } from "react";
+import { setFn } from "../types";
 
-const TranslationSwitch: FC<{
+interface ITranslationSwitch {
   shouldTranslate: boolean;
-  setShouldTranslate: Dispatch<SetStateAction<boolean>>;
-}> = ({ shouldTranslate, setShouldTranslate }) => {
+  setShouldTranslate: setFn<boolean>;
+}
+
+const TranslationSwitch: FC<ITranslationSwitch> = ({
+  shouldTranslate,
+  setShouldTranslate,
+}) => {
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     setShouldTranslate(e.target.checked);
   };
