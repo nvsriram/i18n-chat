@@ -9,8 +9,8 @@ import MessageCard from "../components/MessageCard";
 import Navbar from "../components/Navbar";
 import TextInput from "../components/TextInput";
 import { validateInputs } from "../helpers/ValidateInputs";
-import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "../helpers/types";
-import useTitle from "../helpers/useTitle";
+import { useTitle } from "../hooks";
+import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "../types";
 
 interface IChatroom {
   room: string;
@@ -76,6 +76,7 @@ const Chatroom: FC<IChatroom> = ({
         background,
         backgroundSize,
         animation: "gradient 10s ease infinite",
+        overflow: "hidden",
       }}
     >
       <Navbar
@@ -98,6 +99,7 @@ const Chatroom: FC<IChatroom> = ({
           pb: 1,
           borderBottom: "none",
           background: "transparent",
+          overflow: "auto",
         }}
         square
       >
