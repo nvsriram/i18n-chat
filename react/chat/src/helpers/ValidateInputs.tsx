@@ -1,3 +1,10 @@
+/**
+ * Verifies that the input value is valid for the type of input
+ *
+ * @param inputName type of input, eg:- Room Name, Username, Lang
+ * @param input input value
+ * @returns
+ */
 export const validateInputs = (
   inputName: string,
   input: string
