@@ -1,5 +1,6 @@
 import { FormControlLabel, Switch } from "@mui/material";
 import { ChangeEvent, FC } from "react";
+
 import { setFn } from "../types";
 
 interface ITranslationSwitch {
@@ -20,9 +21,9 @@ const TranslationSwitch: FC<ITranslationSwitch> = ({
       control={
         <Switch
           checked={shouldTranslate}
-          onChange={handleOnChange}
           color="default"
           inputProps={{ "aria-label": "controlled" }}
+          onChange={handleOnChange}
         />
       }
       label={shouldTranslate ? "Translated" : "Original"}
