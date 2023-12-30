@@ -1,8 +1,9 @@
 import SendIcon from "@mui/icons-material/Send";
 import { Box, Grid } from "@mui/material";
-import Paper from "@mui/material/Paper";
 import * as COLORS from "@mui/material/colors";
+import Paper from "@mui/material/Paper";
 import { FC, useEffect, useMemo, useRef, useState } from "react";
+
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
 import MessageCard from "../components/MessageCard";
@@ -80,14 +81,14 @@ const Chatroom: FC<IChatroom> = ({
       }}
     >
       <Navbar
-        room={room}
-        username={username}
         avatar={avatars[username]}
-        shouldTranslate={shouldTranslate}
+        room={room}
         setShouldTranslate={setShouldTranslate}
+        shouldTranslate={shouldTranslate}
+        username={username}
       />
       <Paper
-        variant="elevation"
+        square
         sx={{
           boxShadow: "none",
           display: "flex",
@@ -101,21 +102,19 @@ const Chatroom: FC<IChatroom> = ({
           background: "transparent",
           overflow: "auto",
         }}
-        square
+        variant="elevation"
       >
         <MessageCard
-          roomEvents={roomEvents}
-          messages={messages}
+          avatars={avatars}
           currentUser={username}
           lang={lang}
-          avatars={avatars}
+          messages={messages}
+          roomEvents={roomEvents}
           shouldTranslate={shouldTranslate}
         />
         <div ref={lastDivRef} aria-hidden />
       </Paper>
       <InputForm
-        onSubmit={setValue}
-        validateInputs={validateInputs}
         resetOnSubmit={true}
         sx={{
           display: "flex",
@@ -124,13 +123,14 @@ const Chatroom: FC<IChatroom> = ({
           width: "100%",
           mt: "auto",
         }}
+        validateInputs={validateInputs}
+        onSubmit={setValue}
       >
         <Grid
           container
-          spacing={0.5}
           justifyContent="flex-end"
           px={2}
-          width={"95%"}
+          spacing={0.5}
           sx={{
             backgroundColor: "rgba(255,255,255,0.3)",
             "&:hover": {
@@ -144,31 +144,32 @@ const Chatroom: FC<IChatroom> = ({
             },
             borderRadius: "2rem",
           }}
+          width={"95%"}
         >
           <Grid
             item
-            xs={11}
             sx={{
               width: "100%",
               maxWidth: "90%",
               alignSelf: "flex-end",
               justifySelf: "flex-start",
             }}
+            xs={11}
           >
             <TextInput
-              variant="standard"
-              color="primary"
-              label=" "
-              id="send-message"
-              name="Message"
-              type="text"
-              placeholder="Type a message"
-              removeHelperText
               autoFocus
+              removeHelperText
+              color="primary"
+              id="send-message"
+              label=" "
+              name="Message"
+              placeholder="Type a message"
+              type="text"
+              variant="standard"
             />
           </Grid>
           <Grid item xs={1}>
-            <FormSubmit variant="contained" color="primary">
+            <FormSubmit color="primary" variant="contained">
               <SendIcon
                 sx={{
                   height: "1em",
