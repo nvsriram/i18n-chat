@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import { FC } from "react";
+
 import Logo from "../assets/logo.png";
 import FormSubmit from "../components/FormSubmit";
 import InputForm from "../components/InputForm";
@@ -38,31 +39,31 @@ const JoinRoom: FC<IJoinRoom> = ({
       }}
     >
       <img
-        src={Logo}
         alt="logo"
         height={125}
+        src={Logo}
         style={{ marginBottom: "1rem" }}
       />
-      <InputForm onSubmit={setValues} validateInputs={validateInputs}>
+      <InputForm validateInputs={validateInputs} onSubmit={setValues}>
         <TextInput
-          variant="outlined"
+          autoFocus
           id="room-name"
           label="Room Name"
           name="Room Name"
-          type="text"
           placeholder="My_Custom_Room"
-          autoFocus
+          type="text"
+          variant="outlined"
         />
         <TextInput
-          variant="outlined"
           id="username"
           label="Username"
           name="Username"
-          type="text"
           placeholder="Bob"
+          type="text"
+          variant="outlined"
         />
         <LanguageSelect />
-        <FormSubmit variant="contained" color="success" fullWidth>
+        <FormSubmit fullWidth color="success" variant="contained">
           Join Room
         </FormSubmit>
       </InputForm>
