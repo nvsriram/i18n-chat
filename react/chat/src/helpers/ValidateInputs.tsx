@@ -28,6 +28,7 @@ export const validateInputs = (
       if (!input.trim()) {
         return "Cannot be empty";
       }
+      break;
     default:
       if (!input) {
         return " ";
