@@ -6,8 +6,9 @@ import {
   Select,
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { useFormContext } from "../hooks";
+
 import { LIBRE_BASE_URL } from "../constants";
+import { useFormContext } from "../hooks";
 import { Language } from "../types";
 
 const LanguageSelect: FC<{}> = () => {
@@ -27,15 +28,15 @@ const LanguageSelect: FC<{}> = () => {
 
   return (
     <FormControl
-      variant="outlined"
-      sx={{ m: 1, minWidth: 120 }}
       error={formContext.inputs["Lang"] && formContext.inputs["Lang"].invalid}
+      sx={{ m: 1, minWidth: 120 }}
+      variant="outlined"
     >
       <InputLabel id="language-label">Language</InputLabel>
       <Select
-        labelId="language-label"
         id="language-select"
         label="Language"
+        labelId="language-label"
         name="Lang"
         value={
           "Lang" in formContext.inputs ? formContext.inputs["Lang"].value : ""
