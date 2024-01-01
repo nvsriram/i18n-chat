@@ -1,6 +1,8 @@
 import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import { FC } from "react";
+
 import { setFn } from "../types";
+
 import TranslationSwitch from "./TranslationSwitch";
 
 interface INavbar {
@@ -25,6 +27,7 @@ const Navbar: FC<INavbar> = ({
 
   return (
     <Paper
+      square
       elevation={trigger ? 4 : 2}
       sx={{
         bgcolor: "primary.main",
@@ -32,10 +35,9 @@ const Navbar: FC<INavbar> = ({
         color: "#fff",
         zIndex: 10,
       }}
-      square
     >
       <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 3fr 1fr" }}>
-        <Typography component="h5" variant="h5" sx={{ gridColumn: "1/2" }}>
+        <Typography component="h5" sx={{ gridColumn: "1/2" }} variant="h5">
           {room}
         </Typography>
         <div
@@ -47,21 +49,21 @@ const Navbar: FC<INavbar> = ({
           }}
         >
           <img
-            src={avatar}
             alt={username}
+            src={avatar}
             style={{ height: "3em", width: "3em" }}
           />
           <Typography
             component="h6"
-            variant="h6"
             sx={{ gridColumn: "2/3", textAlign: "center" }}
+            variant="h6"
           >
             {username}
           </Typography>
         </div>
         <TranslationSwitch
-          shouldTranslate={shouldTranslate}
           setShouldTranslate={setShouldTranslate}
+          shouldTranslate={shouldTranslate}
         />
       </Toolbar>
     </Paper>
