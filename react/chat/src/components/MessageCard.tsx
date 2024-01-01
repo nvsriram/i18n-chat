@@ -2,7 +2,9 @@ import { Paper, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { Component, FC } from "react";
 import TimeAgo, { TimeAgoProps } from "timeago-react";
+
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "../types";
+
 import MessageText from "./MessageText";
 import UserAvatar from "./UserAvatar";
 
@@ -35,8 +37,8 @@ const MessageCard: FC<IMessageCard> = ({
       >
         <Typography
           component="p"
-          variant="caption"
           style={{ textAlign: "center", color: "#fff" }}
+          variant="caption"
         >
           {"Start messaging! 🎉"}
         </Typography>
@@ -52,10 +54,10 @@ const MessageCard: FC<IMessageCard> = ({
         if (roomEvent.msg_type === MSG_TYPES.JOINED) {
           return (
             <Typography
-              component="p"
-              variant="body2"
               key={idx}
+              component="p"
               sx={{ my: 2, color: "#fff" }}
+              variant="body2"
             >
               {roomEvent.username} is in the chat! 🎉
             </Typography>
@@ -63,6 +65,7 @@ const MessageCard: FC<IMessageCard> = ({
         }
         return (
           <Paper
+            key={idx}
             sx={{
               display: "flex",
               flexDirection: "row",
@@ -76,12 +79,11 @@ const MessageCard: FC<IMessageCard> = ({
               background: "transparent",
               color: "#fff",
             }}
-            key={idx}
           >
             <UserAvatar
-              username={roomEvent.username}
               avatar={avatars[roomEvent.username]}
               sx={{ order: isCurrentUser ? 1 : 0 }}
+              username={roomEvent.username}
             />
             <Paper
               sx={{
@@ -93,19 +95,19 @@ const MessageCard: FC<IMessageCard> = ({
               }}
             >
               <MessageText
-                roomEvent={roomEvent}
                 lang={lang}
+                roomEvent={roomEvent}
                 shouldTranslate={shouldTranslate}
               />
             </Paper>
             <Typography
               component="p"
-              variant="caption"
               sx={{
                 alignSelf: "flex-end",
                 order: isCurrentUser ? -1 : 1,
                 pb: 0.5,
               }}
+              variant="caption"
             >
               <TimeAgoFixed datetime={roomEvent.timestamp} />
             </Typography>
