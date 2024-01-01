@@ -1,5 +1,6 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 import { FC, useContext } from "react";
+
 import { FormContext } from "../contexts/FormContext";
 
 interface IFormSubmit extends ButtonProps {}
@@ -15,11 +16,11 @@ const FormSubmit: FC<IFormSubmit> = ({
 
   return (
     <Button
-      type="submit"
-      fullWidth={fullWidth}
       color={color}
       disabled={formContext != null && formContext.isValid < 0}
+      fullWidth={fullWidth}
       sx={{ my: 1, ...sx }}
+      type="submit"
       {...props}
     >
       {children}
