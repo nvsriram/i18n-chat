@@ -1,5 +1,6 @@
 import { Box, BoxProps } from "@mui/material";
 import { FC, FormEvent, useState } from "react";
+
 import { FormProvider } from "../contexts/FormContext";
 import { IFormInputs } from "../types";
 
@@ -117,7 +118,7 @@ const InputForm: FC<IInputForm> = ({
         setInputInitialState,
       }}
     >
-      <Box component="form" onSubmit={handleSubmit} noValidate {...props}>
+      <Box noValidate component="form" onSubmit={handleSubmit} {...props}>
         {children}
       </Box>
     </FormProvider>
