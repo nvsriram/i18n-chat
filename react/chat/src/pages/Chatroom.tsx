@@ -4,14 +4,14 @@ import * as COLORS from "@mui/material/colors";
 import Paper from "@mui/material/Paper";
 import { FC, useEffect, useMemo, useRef, useState } from "react";
 
-import FormSubmit from "../components/FormSubmit";
-import InputForm from "../components/InputForm";
-import MessageCard from "../components/MessageCard";
-import Navbar from "../components/Navbar";
-import TextInput from "../components/TextInput";
-import { validateInputs } from "../helpers/ValidateInputs";
-import { useTitle } from "../hooks";
-import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "../types";
+import FormSubmit from "@/components/FormSubmit";
+import InputForm from "@/components/InputForm";
+import MessageCard from "@/components/MessageCard";
+import {Navbar} from "@/components/Navbar";
+import {TextInput} from "@/components/TextInput";
+import { validateInputs } from "@/helpers";
+import { useTitle } from "@/hooks";
+import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "@/types";
 
 interface IChatroom {
   room: string;
