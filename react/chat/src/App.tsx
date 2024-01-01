@@ -2,9 +2,10 @@ import { personas } from "@dicebear/collection";
 import { createAvatar } from "@dicebear/core";
 import { useEffect, useMemo, useState } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./types";
+
 import Chatroom from "./pages/Chatroom";
 import JoinRoom from "./pages/JoinRoom";
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./types";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,7 +19,7 @@ const App = () => {
   const [roomEvents, setRoomEvents] = useState<IRoomEvent[]>([]);
 
   const avatars: IAvatar = useMemo(() => {
-    let newAvatars: IAvatar = {};
+    const newAvatars: IAvatar = {};
     const users = [
       ...new Set(roomEvents.map((roomEvent) => roomEvent.username)),
     ];
@@ -127,22 +128,22 @@ const App = () => {
   if (!isLoggedIn) {
     return (
       <JoinRoom
+        setIsLoggedIn={setIsLoggedIn}
+        setLang={setLang}
         setRoomName={setRoomName}
         setUsername={setUsername}
-        setLang={setLang}
-        setIsLoggedIn={setIsLoggedIn}
       />
     );
   }
 
   return (
     <Chatroom
-      room={roomName}
-      username={username}
-      lang={lang}
-      roomEvents={roomEvents}
-      messages={messages}
       avatars={avatars}
+      lang={lang}
+      messages={messages}
+      room={roomName}
+      roomEvents={roomEvents}
+      username={username}
       onButtonClicked={sendMessage}
     />
   );
