@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import { LIBRE_BASE_URL } from "../constants";
 import { IRoomEvent } from "../types";
@@ -17,7 +17,7 @@ const MessageText: FC<IMessageText> = ({
 }) => {
   const [text, setText] = useState(roomEvent.message);
 
-  const translateText = async (roomEvent: IRoomEvent) => {
+  const translateText = useCallback(async (roomEvent: IRoomEvent) => {
     const data = await fetch(`${LIBRE_BASE_URL}/translate`, {
       method: "POST",
       headers: {
@@ -32,7 +32,7 @@ const MessageText: FC<IMessageText> = ({
       .then((res) => res.json())
       .then((data) => data);
     return data.translatedText;
-  };
+  }, [lang]);
 
   useEffect(() => {
     if (!shouldTranslate) {
@@ -44,7 +44,7 @@ const MessageText: FC<IMessageText> = ({
         setText(data);
       });
     }
-  }, [roomEvent, lang, shouldTranslate]);
+  }, [roomEvent, lang, shouldTranslate, translateText]);
 
   return (
     <Typography component="p" variant="body1">
