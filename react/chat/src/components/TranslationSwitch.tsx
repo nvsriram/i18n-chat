@@ -1,7 +1,7 @@
 import { FormControlLabel, Switch } from "@mui/material";
 import { ChangeEvent, FC } from "react";
 
-import { setFn } from "../types";
+import { setFn } from "@/types";
 
 interface ITranslationSwitch {
   shouldTranslate: boolean;
