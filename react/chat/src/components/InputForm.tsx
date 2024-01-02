@@ -1,8 +1,8 @@
 import { Box, BoxProps } from "@mui/material";
 import { FC, FormEvent, useState } from "react";
 
-import { FormProvider } from "../contexts/FormContext";
-import { IFormInputs } from "../types";
+import { FormProvider } from "@/contexts";
+import { IFormInputs } from "@/types";
 
 interface IInputForm extends Omit<BoxProps, "onSubmit"> {
   onSubmit: (inputs: IFormInputs) => void;
