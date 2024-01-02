@@ -1,7 +1,7 @@
 import TextField, { TextFieldProps } from "@mui/material/TextField";
 import { useEffect } from "react";
 
-import { useFormContext } from "../hooks";
+import { useFormContext } from "@/hooks";
 
 type ITextInput = TextFieldProps & {
   name: string;
