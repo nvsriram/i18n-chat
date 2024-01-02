@@ -7,9 +7,9 @@ import {
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 
-import { LIBRE_BASE_URL } from "../constants";
-import { useFormContext } from "../hooks";
-import { Language } from "../types";
+import { LIBRE_BASE_URL } from "@/constants";
+import { useFormContext } from "@/hooks";
+import { Language } from "@/types";
 
 const LanguageSelect: FC = () => {
   const formContext = useFormContext();
