@@ -1,9 +1,8 @@
 import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
 import { FC } from "react";
 
-import { setFn } from "../types";
-
-import TranslationSwitch from "./TranslationSwitch";
+import { TranslationSwitch } from "@/components/TranslationSwitch";
+import { setFn } from "@/types";
 
 interface INavbar {
   room: string;
