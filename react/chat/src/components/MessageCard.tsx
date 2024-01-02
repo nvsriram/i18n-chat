@@ -9,7 +9,7 @@ import MessageText from "./MessageText";
 import UserAvatar from "./UserAvatar";
 
 const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
-  new (props: any): Component<TimeAgoProps>;
+  new (props: unknown): Component<TimeAgoProps>;
 };
 
 interface IMessageCard {
