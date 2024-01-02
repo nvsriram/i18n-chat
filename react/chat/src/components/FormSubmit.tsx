@@ -1,7 +1,7 @@
 import Button, { ButtonProps } from "@mui/material/Button";
 import { FC, useContext } from "react";
 
-import { FormContext } from "../contexts/FormContext";
+import { FormContext } from "@/contexts";
 
 interface IFormSubmit extends ButtonProps {}
 
