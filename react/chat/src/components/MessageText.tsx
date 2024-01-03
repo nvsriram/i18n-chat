@@ -10,7 +10,7 @@ interface IMessageText {
   shouldTranslate: boolean;
 }
 
-const MessageText: FC<IMessageText> = ({
+export const MessageText: FC<IMessageText> = ({
   roomEvent,
   lang,
   shouldTranslate,
@@ -52,5 +52,3 @@ const MessageText: FC<IMessageText> = ({
     </Typography>
   );
 };
-
-export default MessageText;
