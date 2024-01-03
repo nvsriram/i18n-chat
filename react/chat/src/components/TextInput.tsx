@@ -8,7 +8,7 @@ type ITextInput = TextFieldProps & {
   removeHelperText?: boolean;
 };
 
-const TextInput = ({ name, removeHelperText, sx, ...props }: ITextInput) => {
+export const TextInput = ({ name, removeHelperText, sx, ...props }: ITextInput) => {
   const formContext = useFormContext();
 
   useEffect(() => {
@@ -40,5 +40,3 @@ const TextInput = ({ name, removeHelperText, sx, ...props }: ITextInput) => {
     />
   );
 };
-
-export default TextInput;
