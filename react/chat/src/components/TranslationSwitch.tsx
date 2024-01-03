@@ -8,7 +8,7 @@ interface ITranslationSwitch {
   setShouldTranslate: setFn<boolean>;
 }
 
-const TranslationSwitch: FC<ITranslationSwitch> = ({
+export const TranslationSwitch: FC<ITranslationSwitch> = ({
   shouldTranslate,
   setShouldTranslate,
 }) => {
@@ -30,5 +30,3 @@ const TranslationSwitch: FC<ITranslationSwitch> = ({
     />
   );
 };
-
-export default TranslationSwitch;
