@@ -11,7 +11,7 @@ import { LIBRE_BASE_URL } from "@/constants";
 import { useFormContext } from "@/hooks";
 import { Language } from "@/types";
 
-const LanguageSelect: FC = () => {
+export const LanguageSelect: FC = () => {
   const formContext = useFormContext();
 
   const [languagesList, setLanguagesList] = useState<Language[]>([]);
@@ -60,5 +60,3 @@ const LanguageSelect: FC = () => {
     </FormControl>
   );
 };
-
-export default LanguageSelect;
