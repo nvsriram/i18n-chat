@@ -7,7 +7,7 @@ interface IUserAvatar extends StackProps {
   avatar: string;
 }
 
-const UserAvatar: FC<IUserAvatar> = ({ username, avatar, ...props }) => {
+export const UserAvatar: FC<IUserAvatar> = ({ username, avatar, ...props }) => {
   return (
     <Stack {...props}>
       <Avatar alt={username} src={avatar} />
@@ -17,5 +17,3 @@ const UserAvatar: FC<IUserAvatar> = ({ username, avatar, ...props }) => {
     </Stack>
   );
 };
-
-export default UserAvatar;
