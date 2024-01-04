@@ -5,7 +5,7 @@ import { FormContext } from "@/contexts";
 
 interface IFormSubmit extends ButtonProps {}
 
-const FormSubmit: FC<IFormSubmit> = ({
+export const FormSubmit: FC<IFormSubmit> = ({
   fullWidth,
   color,
   children,
@@ -27,5 +27,3 @@ const FormSubmit: FC<IFormSubmit> = ({
     </Button>
   );
 };
-
-export default FormSubmit;
