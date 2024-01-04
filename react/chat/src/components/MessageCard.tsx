@@ -21,7 +21,7 @@ interface IMessageCard {
   shouldTranslate: boolean;
 }
 
-const MessageCard: FC<IMessageCard> = ({
+export const MessageCard: FC<IMessageCard> = ({
   roomEvents,
   messages,
   currentUser,
@@ -117,5 +117,3 @@ const MessageCard: FC<IMessageCard> = ({
     </>
   );
 };
-
-export default MessageCard;
