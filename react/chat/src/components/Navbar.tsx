@@ -12,7 +12,7 @@ interface INavbar {
   setShouldTranslate: setFn<boolean>;
 }
 
-const Navbar: FC<INavbar> = ({
+export const Navbar: FC<INavbar> = ({
   room,
   username,
   avatar,
@@ -68,5 +68,3 @@ const Navbar: FC<INavbar> = ({
     </Paper>
   );
 };
-
-export default Navbar;
