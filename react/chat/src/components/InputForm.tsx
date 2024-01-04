@@ -10,7 +10,7 @@ interface IInputForm extends Omit<BoxProps, "onSubmit"> {
   resetOnSubmit?: boolean;
 }
 
-const InputForm: FC<IInputForm> = ({
+export const InputForm: FC<IInputForm> = ({
   children,
   onSubmit,
   validateInputs,
@@ -124,5 +124,3 @@ const InputForm: FC<IInputForm> = ({
     </FormProvider>
   );
 };
-
-export default InputForm;
