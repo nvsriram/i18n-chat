@@ -2,10 +2,10 @@ import Box from "@mui/material/Box";
 import { FC } from "react";
 
 import Logo from "@/assets/logo.png";
-import FormSubmit from "@/components/FormSubmit";
-import InputForm from "@/components/InputForm";
-import LanguageSelect from "@/components/LanguageSelect";
-import TextInput from "@/components/TextInput";
+import {FormSubmit} from "@/components/FormSubmit";
+import {InputForm} from "@/components/InputForm";
+import {LanguageSelect} from "@/components/LanguageSelect";
+import {TextInput} from "@/components/TextInput";
 import { validateInputs } from "@/helpers";
 import { IFormInputs, setFn } from "@/types";
 
