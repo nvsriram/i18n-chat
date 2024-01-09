@@ -3,7 +3,7 @@ import { grey } from "@mui/material/colors";
 import { Component, FC } from "react";
 import TimeAgo, { TimeAgoProps } from "timeago-react";
 
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "../types";
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "@/types";
 
 import MessageText from "./MessageText";
 import UserAvatar from "./UserAvatar";
