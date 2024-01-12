@@ -3,10 +3,9 @@ import { grey } from "@mui/material/colors";
 import { Component, FC } from "react";
 import TimeAgo, { TimeAgoProps } from "timeago-react";
 
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "@/types";
-
 import { MessageText } from "@/components/MessageText";
 import { UserAvatar } from "@/components/UserAvatar";
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "@/types";
 
 const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
   new (props: unknown): Component<TimeAgoProps>;
