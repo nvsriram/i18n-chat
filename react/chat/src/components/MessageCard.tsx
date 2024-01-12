@@ -5,8 +5,8 @@ import TimeAgo, { TimeAgoProps } from "timeago-react";
 
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "@/types";
 
-import {MessageText} from "@/components/MessageText";
-import {UserAvatar} from "@/components/UserAvatar";
+import { MessageText } from "@/components/MessageText";
+import { UserAvatar } from "@/components/UserAvatar";
 
 const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
   new (props: unknown): Component<TimeAgoProps>;
