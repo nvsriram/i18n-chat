@@ -11,6 +11,21 @@ _What if all you wanted to do was practice your Duolingo skills with your friend
 
 Look no further as this web application does exactly that! ;)
 
+## 📸 Screenshots
+
+### Join New Room
+
+To create a new room, the user fills in the Room Name to join, Username, and the user's native Language (all messages can potentially be translated to this Language):
+
+https://github.com/nvsriram/i18n-chat/assets/50625504/45c307a3-bb24-4e40-ae27-07a004f31f64
+
+## Join Existing Room
+
+To join an existing room, all users should enter the same Room Name:
+
+https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12ac0b5e3f12
+
+
 ## ✨ Key Features
 
 - Allows users to choose their preferred langauge and chat in it
