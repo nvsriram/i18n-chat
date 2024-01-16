@@ -44,8 +44,8 @@ const App = () => {
         newClient.send(
           JSON.stringify({
             msg_type: MSG_TYPES.JOINED,
-            username: username,
-            lang: lang,
+            username,
+            lang,
           })
         );
       }
@@ -67,9 +67,9 @@ const App = () => {
               setRoomEvents((prevEvents) => [
                 ...prevEvents,
                 {
-                  msg_type: msg_type,
-                  timestamp: timestamp,
-                  username: username,
+                  msg_type,
+                  timestamp,
+                  username,
                 },
               ]);
               if (userID === -1) {
@@ -80,21 +80,21 @@ const App = () => {
               setRoomEvents((prevEvents) => [
                 ...prevEvents,
                 {
-                  msg_type: msg_type,
-                  message: message,
-                  timestamp: timestamp,
-                  user_id: user_id,
-                  username: username,
-                  lang: lang,
+                  msg_type,
+                  message,
+                  timestamp,
+                  user_id,
+                  username,
+                  lang,
                 },
               ]);
               setMessages((prevMessages) => [
                 ...prevMessages,
                 {
-                  message: message,
-                  timestamp: timestamp,
-                  username: username,
-                  lang: lang,
+                  message,
+                  timestamp,
+                  username,
+                  lang,
                 },
               ]);
               break;
@@ -119,8 +119,8 @@ const App = () => {
         msg_type: MSG_TYPES.MESSAGE,
         message: input,
         user_id: userID,
-        username: username,
-        lang: lang,
+        username,
+        lang,
       })
     );
   };
