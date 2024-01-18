@@ -41,6 +41,7 @@ const App = () => {
       console.log("Websocket connected!");
       setClient(newClient);
       if (userID === -1) {
+        try {
         newClient.send(
           JSON.stringify({
             msg_type: MSG_TYPES.JOINED,
@@ -48,6 +49,11 @@ const App = () => {
             lang,
           })
         );
+        } catch (err) {
+          if (err instanceof Error) {
+          console.log(err.message);
+        }
+      }
       }
     };
 
@@ -114,6 +120,7 @@ const App = () => {
     if (client == null) {
       return;
     }
+    try {
     client.send(
       JSON.stringify({
         msg_type: MSG_TYPES.MESSAGE,
@@ -123,6 +130,11 @@ const App = () => {
         lang,
       })
     );
+    } catch(err) {
+      if (err instanceof Error) {
+          console.log(err.message);
+        }
+    }
   };
 
   if (!isLoggedIn) {
