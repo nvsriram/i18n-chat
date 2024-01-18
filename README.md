@@ -15,7 +15,7 @@ Look no further as this web application does exactly that! ;)
 
 ### Join New Room
 
-To create a new room, the user fills in the Room Name to join, Username, and the user's native Language (all messages can potentially be translated to this Language):
+To create a new room, the user fills in the Room Name to join, Username, and the user's native Language:
 
 https://github.com/nvsriram/i18n-chat/assets/50625504/45c307a3-bb24-4e40-ae27-07a004f31f64
 
