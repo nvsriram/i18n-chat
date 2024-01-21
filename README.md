@@ -25,7 +25,6 @@ To join an existing room, all users should enter the same Room Name:
 
 https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12ac0b5e3f12
 
-
 ## ✨ Key Features
 
 - Allows users to choose their preferred langauge and chat in it
