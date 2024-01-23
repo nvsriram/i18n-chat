@@ -1,18 +1,18 @@
-import { personas } from "@dicebear/collection";
-import { createAvatar } from "@dicebear/core";
-import { useEffect, useMemo, useState } from "react";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
+import { personas } from '@dicebear/collection';
+import { createAvatar } from '@dicebear/core';
+import { useEffect, useMemo, useState } from 'react';
+import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
-import Chatroom from "./pages/Chatroom";
-import JoinRoom from "./pages/JoinRoom";
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "./types";
+import Chatroom from './pages/Chatroom';
+import JoinRoom from './pages/JoinRoom';
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [roomName, setRoomName] = useState("");
+  const [roomName, setRoomName] = useState('');
   const [userID, setUserID] = useState(-1);
-  const [username, setUsername] = useState("");
-  const [lang, setLang] = useState("en");
+  const [username, setUsername] = useState('');
+  const [lang, setLang] = useState('en');
   const [client, setClient] = useState<W3CWebSocket | null>(null);
 
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -35,31 +35,31 @@ const App = () => {
   useEffect(() => {
     if (!isLoggedIn || userID > 0) return;
     const newClient = new W3CWebSocket(
-      `ws://${import.meta.env.VITE_SERVER_URL}/ws/chat/${roomName}/`
+      `ws://${import.meta.env.VITE_SERVER_URL}/ws/chat/${roomName}/`,
     );
     newClient.onopen = () => {
-      console.log("Websocket connected!");
+      console.log('Websocket connected!');
       setClient(newClient);
       if (userID === -1) {
         try {
-        newClient.send(
-          JSON.stringify({
-            msg_type: MSG_TYPES.JOINED,
-            username,
-            lang,
-          })
-        );
+          newClient.send(
+            JSON.stringify({
+              msg_type: MSG_TYPES.JOINED,
+              username,
+              lang,
+            }),
+          );
         } catch (err) {
           if (err instanceof Error) {
-          console.log(err.message);
+            console.log(err.message);
+          }
         }
-      }
       }
     };
 
     newClient.onmessage = (message) => {
-      if (typeof message.data != "string") {
-        console.log("invalid message data");
+      if (typeof message.data != 'string') {
+        console.log('invalid message data');
         return;
       }
       try {
@@ -105,7 +105,7 @@ const App = () => {
               ]);
               break;
             default:
-              console.log("unexpected msg_type", msg_type);
+              console.log('unexpected msg_type', msg_type);
           }
         }
       } catch (err) {
@@ -121,19 +121,19 @@ const App = () => {
       return;
     }
     try {
-    client.send(
-      JSON.stringify({
-        msg_type: MSG_TYPES.MESSAGE,
-        message: input,
-        user_id: userID,
-        username,
-        lang,
-      })
-    );
-    } catch(err) {
+      client.send(
+        JSON.stringify({
+          msg_type: MSG_TYPES.MESSAGE,
+          message: input,
+          user_id: userID,
+          username,
+          lang,
+        }),
+      );
+    } catch (err) {
       if (err instanceof Error) {
-          console.log(err.message);
-        }
+        console.log(err.message);
+      }
     }
   };
 
