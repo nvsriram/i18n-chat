@@ -1,13 +1,19 @@
-import SendIcon from "@mui/icons-material/Send";
-import { Box, Grid } from "@mui/material";
-import * as COLORS from "@mui/material/colors";
-import Paper from "@mui/material/Paper";
-import { FC, useEffect, useMemo, useRef, useState } from "react";
+import SendIcon from '@mui/icons-material/Send';
+import { Box, Grid } from '@mui/material';
+import * as COLORS from '@mui/material/colors';
+import Paper from '@mui/material/Paper';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 
-import { FormSubmit, InputForm, MessageCard, Navbar, TextInput } from "@/components";
-import { validateInputs } from "@/helpers";
-import { useTitle } from "@/hooks";
-import { IAvatar, IFormInputs, IMessage, IRoomEvent } from "@/types";
+import {
+  FormSubmit,
+  InputForm,
+  MessageCard,
+  Navbar,
+  TextInput,
+} from '@/components';
+import { validateInputs } from '@/helpers';
+import { useTitle } from '@/hooks';
+import { IAvatar, IFormInputs, IMessage, IRoomEvent } from '@/types';
 
 interface IChatroom {
   room: string;
@@ -35,7 +41,7 @@ const Chatroom: FC<IChatroom> = ({
   const lastDivRef = useRef<HTMLDivElement>(null);
 
   const setValue = (input: IFormInputs) => {
-    onButtonClicked(input["Message"].value);
+    onButtonClicked(input['Message'].value);
   };
 
   const [background, backgroundSize] = useMemo(() => {
@@ -49,31 +55,31 @@ const Chatroom: FC<IChatroom> = ({
     const colors = Object.keys(COLORS).map((color: string) => {
       return Object(COLORS)[color][800];
     });
-    let colorStr = "";
-    let prefix = "";
+    let colorStr = '';
+    let prefix = '';
     colors.slice(0, totalLangs + 1).forEach((color) => {
       if (!color) return;
       colorStr += prefix + color;
-      prefix = ", ";
+      prefix = ', ';
     });
     return [`linear-gradient(45deg, ${colorStr})`, backgroundSize];
   }, [roomEvents]);
 
   useEffect(() => {
-    lastDivRef?.current?.scrollIntoView({ behavior: "smooth" });
+    lastDivRef?.current?.scrollIntoView({ behavior: 'smooth' });
   }, [roomEvents]);
 
   return (
     <Box
       sx={{
-        display: "flex",
-        height: "100%",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        height: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
         background,
         backgroundSize,
-        animation: "gradient 10s ease infinite",
-        overflow: "hidden",
+        animation: 'gradient 10s ease infinite',
+        overflow: 'hidden',
       }}
     >
       <Navbar
@@ -86,17 +92,17 @@ const Chatroom: FC<IChatroom> = ({
       <Paper
         square
         sx={{
-          boxShadow: "none",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          height: "100%",
-          width: "100%",
+          boxShadow: 'none',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          height: '100%',
+          width: '100%',
           pb: 1,
-          borderBottom: "none",
-          background: "transparent",
-          overflow: "auto",
+          borderBottom: 'none',
+          background: 'transparent',
+          overflow: 'auto',
         }}
         variant="elevation"
       >
@@ -113,11 +119,11 @@ const Chatroom: FC<IChatroom> = ({
       <InputForm
         resetOnSubmit={true}
         sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          mt: "auto",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          mt: 'auto',
         }}
         validateInputs={validateInputs}
         onSubmit={setValue}
@@ -128,27 +134,27 @@ const Chatroom: FC<IChatroom> = ({
           px={2}
           spacing={0.5}
           sx={{
-            backgroundColor: "rgba(255,255,255,0.3)",
-            "&:hover": {
-              backgroundColor: "rgba(255,255,255,0.6)",
+            backgroundColor: 'rgba(255,255,255,0.3)',
+            '&:hover': {
+              backgroundColor: 'rgba(255,255,255,0.6)',
             },
-            "&:focus-within": {
-              backgroundColor: "rgba(255,255,255,0.6)",
+            '&:focus-within': {
+              backgroundColor: 'rgba(255,255,255,0.6)',
             },
-            "&:active-within": {
-              backgroundColor: "rgba(255,255,255,0.6)",
+            '&:active-within': {
+              backgroundColor: 'rgba(255,255,255,0.6)',
             },
-            borderRadius: "2rem",
+            borderRadius: '2rem',
           }}
-          width={"95%"}
+          width={'95%'}
         >
           <Grid
             item
             sx={{
-              width: "100%",
-              maxWidth: "90%",
-              alignSelf: "flex-end",
-              justifySelf: "flex-start",
+              width: '100%',
+              maxWidth: '90%',
+              alignSelf: 'flex-end',
+              justifySelf: 'flex-start',
             }}
             xs={11}
           >
@@ -168,8 +174,8 @@ const Chatroom: FC<IChatroom> = ({
             <FormSubmit color="primary" variant="contained">
               <SendIcon
                 sx={{
-                  height: "1em",
-                  width: "1em",
+                  height: '1em',
+                  width: '1em',
                 }}
               />
             </FormSubmit>

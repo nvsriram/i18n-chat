@@ -1,10 +1,10 @@
-import Box from "@mui/material/Box";
-import { FC } from "react";
+import Box from '@mui/material/Box';
+import { FC } from 'react';
 
-import Logo from "@/assets/logo.png";
-import { FormSubmit, InputForm, LanguageSelect, TextInput } from "@/components";
-import { validateInputs } from "@/helpers";
-import { IFormInputs, setFn } from "@/types";
+import Logo from '@/assets/logo.png';
+import { FormSubmit, InputForm, LanguageSelect, TextInput } from '@/components';
+import { validateInputs } from '@/helpers';
+import { IFormInputs, setFn } from '@/types';
 
 interface IJoinRoom {
   setRoomName: setFn<string>;
@@ -20,9 +20,9 @@ const JoinRoom: FC<IJoinRoom> = ({
   setIsLoggedIn,
 }) => {
   const setValues = (inputs: IFormInputs) => {
-    setRoomName(inputs["Room Name"].value);
-    setUsername(inputs["Username"].value);
-    setLang(inputs["Lang"].value);
+    setRoomName(inputs['Room Name'].value);
+    setUsername(inputs['Username'].value);
+    setLang(inputs['Lang'].value);
     setIsLoggedIn(true);
   };
 
@@ -30,16 +30,16 @@ const JoinRoom: FC<IJoinRoom> = ({
     <Box
       sx={{
         paddingTop: 8,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       }}
     >
       <img
         alt="logo"
         height={125}
         src={Logo}
-        style={{ marginBottom: "1rem" }}
+        style={{ marginBottom: '1rem' }}
       />
       <InputForm validateInputs={validateInputs} onSubmit={setValues}>
         <TextInput
