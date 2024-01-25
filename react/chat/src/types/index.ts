@@ -1,17 +1,17 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from 'react';
 
 export enum MSG_TYPES {
-  JOINED = "joined",
-  MESSAGE = "message",
-  LEAVE = "leave",
+  JOINED = 'joined',
+  MESSAGE = 'message',
+  LEAVE = 'leave',
 }
 
 export type setFn<T> = Dispatch<SetStateAction<T>>;
 
 export type Language = {
-  code: "string";
-  name: "string";
-  targets: ["string"];
+  code: 'string';
+  name: 'string';
+  targets: ['string'];
 };
 
 export interface IMessage {
