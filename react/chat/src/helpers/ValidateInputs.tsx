@@ -7,31 +7,31 @@
  */
 export const validateInputs = (
   inputName: string,
-  input: string
+  input: string,
 ): string | null => {
   switch (inputName) {
-    case "Room Name":
+    case 'Room Name':
       if (!input) {
-        return "Cannot be empty";
+        return 'Cannot be empty';
       } else if (!/^[a-zA-Z0-9_]+$/.test(input)) {
-        return "Invalid Room name";
+        return 'Invalid Room name';
       }
       break;
-    case "Username":
+    case 'Username':
       if (!input) {
-        return "Cannot be empty";
+        return 'Cannot be empty';
       } else if (!/^[A-Za-z][A-Za-z0-9_]{0,15}$/.test(input)) {
-        return "Invalid username";
+        return 'Invalid username';
       }
       break;
-    case "Lang":
+    case 'Lang':
       if (!input.trim()) {
-        return "Cannot be empty";
+        return 'Cannot be empty';
       }
       break;
     default:
       if (!input) {
-        return " ";
+        return ' ';
       }
       break;
   }
