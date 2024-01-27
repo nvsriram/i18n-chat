@@ -1,6 +1,6 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
-import { IFormContext } from "../types";
+import { IFormContext } from '../types';
 
 export const FormContext = createContext<IFormContext | null>(null);
 
