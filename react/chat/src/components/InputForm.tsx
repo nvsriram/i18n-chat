@@ -1,10 +1,10 @@
-import { Box, BoxProps } from "@mui/material";
-import { FC, FormEvent, useState } from "react";
+import { Box, BoxProps } from '@mui/material';
+import { FC, FormEvent, useState } from 'react';
 
-import { FormProvider } from "@/contexts";
-import { IFormInputs } from "@/types";
+import { FormProvider } from '@/contexts';
+import { IFormInputs } from '@/types';
 
-interface IInputForm extends Omit<BoxProps, "onSubmit"> {
+interface IInputForm extends Omit<BoxProps, 'onSubmit'> {
   onSubmit: (inputs: IFormInputs) => void;
   validateInputs: (inputName: string, input: string) => string | null;
   resetOnSubmit?: boolean;
@@ -20,7 +20,7 @@ export const InputForm: FC<IInputForm> = ({
   const [inputs, setInputs] = useState<IFormInputs>({});
   const [isValid, setIsValid] = useState(0);
 
-  const setInputInitialState = (inputName: string, initialValue = "") => {
+  const setInputInitialState = (inputName: string, initialValue = '') => {
     const INITIAL_INPUT_STATE = {
       invalid: false,
       invalidMsg: null,
@@ -66,7 +66,7 @@ export const InputForm: FC<IInputForm> = ({
     setIsValid((prev) => prev + is_valid);
   };
 
-  const resetInputs = (defaultValue = "") => {
+  const resetInputs = (defaultValue = '') => {
     setInputs((prevState) => {
       Object.keys(prevState).forEach((key) => {
         prevState[key] = {
@@ -84,7 +84,7 @@ export const InputForm: FC<IInputForm> = ({
     if (is_valid === 0) {
       onSubmit(inputs);
       if (resetOnSubmit) {
-        resetInputs("");
+        resetInputs('');
       }
     }
     setIsValid(is_valid);

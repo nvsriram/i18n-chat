@@ -4,12 +4,12 @@ import {
   InputLabel,
   MenuItem,
   Select,
-} from "@mui/material";
-import { FC, useEffect, useState } from "react";
+} from '@mui/material';
+import { FC, useEffect, useState } from 'react';
 
-import { LIBRE_BASE_URL } from "@/constants";
-import { useFormContext } from "@/hooks";
-import { Language } from "@/types";
+import { LIBRE_BASE_URL } from '@/constants';
+import { useFormContext } from '@/hooks';
+import { Language } from '@/types';
 
 export const LanguageSelect: FC = () => {
   const formContext = useFormContext();
@@ -17,7 +17,7 @@ export const LanguageSelect: FC = () => {
   const [languagesList, setLanguagesList] = useState<Language[]>([]);
 
   useEffect(() => {
-    formContext.setInputInitialState("Lang");
+    formContext.setInputInitialState('Lang');
   }, [formContext]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const LanguageSelect: FC = () => {
 
   return (
     <FormControl
-      error={formContext.inputs["Lang"] && formContext.inputs["Lang"].invalid}
+      error={formContext.inputs['Lang'] && formContext.inputs['Lang'].invalid}
       sx={{ m: 1, minWidth: 120 }}
       variant="outlined"
     >
@@ -39,7 +39,7 @@ export const LanguageSelect: FC = () => {
         labelId="language-label"
         name="Lang"
         value={
-          "Lang" in formContext.inputs ? formContext.inputs["Lang"].value : ""
+          'Lang' in formContext.inputs ? formContext.inputs['Lang'].value : ''
         }
         onChange={formContext.onChange}
       >
@@ -52,10 +52,10 @@ export const LanguageSelect: FC = () => {
         })}
       </Select>
       <FormHelperText>
-        {" "}
-        {"Lang" in formContext.inputs && formContext.inputs["Lang"].invalid
-          ? formContext.inputs["Lang"].invalidMsg
-          : " "}
+        {' '}
+        {'Lang' in formContext.inputs && formContext.inputs['Lang'].invalid
+          ? formContext.inputs['Lang'].invalidMsg
+          : ' '}
       </FormHelperText>
     </FormControl>
   );
