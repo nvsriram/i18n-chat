@@ -1,6 +1,6 @@
-import { Avatar, Typography } from "@mui/material";
-import { Stack, StackProps } from "@mui/system";
-import { FC } from "react";
+import { Avatar, Typography } from '@mui/material';
+import { Stack, StackProps } from '@mui/system';
+import { FC } from 'react';
 
 interface IUserAvatar extends StackProps {
   username: string;
