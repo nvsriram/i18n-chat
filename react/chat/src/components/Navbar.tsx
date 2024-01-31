@@ -1,8 +1,8 @@
-import { Paper, Toolbar, Typography, useScrollTrigger } from "@mui/material";
-import { FC } from "react";
+import { Paper, Toolbar, Typography, useScrollTrigger } from '@mui/material';
+import { FC } from 'react';
 
-import { TranslationSwitch } from "@/components/TranslationSwitch";
-import { setFn } from "@/types";
+import { TranslationSwitch } from '@/components/TranslationSwitch';
+import { setFn } from '@/types';
 
 interface INavbar {
   room: string;
@@ -29,32 +29,32 @@ export const Navbar: FC<INavbar> = ({
       square
       elevation={trigger ? 4 : 2}
       sx={{
-        bgcolor: "primary.main",
-        width: "100%",
-        color: "#fff",
+        bgcolor: 'primary.main',
+        width: '100%',
+        color: '#fff',
         zIndex: 10,
       }}
     >
-      <Toolbar sx={{ display: "grid", gridTemplateColumns: "1fr 3fr 1fr" }}>
-        <Typography component="h5" sx={{ gridColumn: "1/2" }} variant="h5">
+      <Toolbar sx={{ display: 'grid', gridTemplateColumns: '1fr 3fr 1fr' }}>
+        <Typography component="h5" sx={{ gridColumn: '1/2' }} variant="h5">
           {room}
         </Typography>
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <img
             alt={username}
             src={avatar}
-            style={{ height: "3em", width: "3em" }}
+            style={{ height: '3em', width: '3em' }}
           />
           <Typography
             component="h6"
-            sx={{ gridColumn: "2/3", textAlign: "center" }}
+            sx={{ gridColumn: '2/3', textAlign: 'center' }}
             variant="h6"
           >
             {username}
