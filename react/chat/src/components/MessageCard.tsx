@@ -1,10 +1,10 @@
-import { Paper, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
-import { Component, FC } from "react";
-import TimeAgo, { TimeAgoProps } from "timeago-react";
+import { Paper, Typography } from '@mui/material';
+import { grey } from '@mui/material/colors';
+import { Component, FC } from 'react';
+import TimeAgo, { TimeAgoProps } from 'timeago-react';
 
-import { MessageText, UserAvatar } from "@/components";
-import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from "@/types";
+import { MessageText, UserAvatar } from '@/components';
+import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from '@/types';
 
 const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
   new (props: unknown): Component<TimeAgoProps>;
@@ -31,14 +31,14 @@ export const MessageCard: FC<IMessageCard> = ({
     return (
       <Paper
         elevation={0}
-        sx={{ marginTop: "auto", background: "transparent" }}
+        sx={{ marginTop: 'auto', background: 'transparent' }}
       >
         <Typography
           component="p"
-          style={{ textAlign: "center", color: "#fff" }}
+          style={{ textAlign: 'center', color: '#fff' }}
           variant="caption"
         >
-          {"Start messaging! 🎉"}
+          {'Start messaging! 🎉'}
         </Typography>
       </Paper>
     );
@@ -54,7 +54,7 @@ export const MessageCard: FC<IMessageCard> = ({
             <Typography
               key={idx}
               component="p"
-              sx={{ my: 2, color: "#fff" }}
+              sx={{ my: 2, color: '#fff' }}
               variant="body2"
             >
               {roomEvent.username} is in the chat! 🎉
@@ -65,17 +65,17 @@ export const MessageCard: FC<IMessageCard> = ({
           <Paper
             key={idx}
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignSelf: "flex-start",
-              alignItems: "center",
-              justifyContent: isCurrentUser ? "flex-end" : "flex-start",
+              display: 'flex',
+              flexDirection: 'row',
+              alignSelf: 'flex-start',
+              alignItems: 'center',
+              justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
               mx: 2,
               my: 0.2,
-              boxShadow: "none",
-              ml: isCurrentUser ? "auto" : 2,
-              background: "transparent",
-              color: "#fff",
+              boxShadow: 'none',
+              ml: isCurrentUser ? 'auto' : 2,
+              background: 'transparent',
+              color: '#fff',
             }}
           >
             <UserAvatar
@@ -87,9 +87,9 @@ export const MessageCard: FC<IMessageCard> = ({
               sx={{
                 p: 1.5,
                 mx: 0.5,
-                overflowWrap: "break-word",
-                bgcolor: isCurrentUser ? "primary.main" : grey[800],
-                color: "#fff",
+                overflowWrap: 'break-word',
+                bgcolor: isCurrentUser ? 'primary.main' : grey[800],
+                color: '#fff',
               }}
             >
               <MessageText
@@ -101,7 +101,7 @@ export const MessageCard: FC<IMessageCard> = ({
             <Typography
               component="p"
               sx={{
-                alignSelf: "flex-end",
+                alignSelf: 'flex-end',
                 order: isCurrentUser ? -1 : 1,
                 pb: 0.5,
               }}
