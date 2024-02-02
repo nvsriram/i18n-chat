@@ -6,6 +6,7 @@ import { w3cwebsocket as W3CWebSocket } from 'websocket';
 import Chatroom from './pages/Chatroom';
 import JoinRoom from './pages/JoinRoom';
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
+import Logo from './assets/logo.png';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -67,6 +68,7 @@ const App = () => {
         if (dataFromServer) {
           const { msg_type, message, user_id, username, lang, timestamp } =
             dataFromServer;
+
           // handle based on msg_type
           switch (msg_type) {
             case MSG_TYPES.JOINED:
@@ -136,6 +138,59 @@ const App = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (roomEvents.length === 0) {
+      return;
+    }
+    let notification: Notification | undefined;
+
+    const handleClose = () => {
+      if (notification != undefined && document.visibilityState === 'visible') {
+        notification.close();
+      }
+    };
+
+    const handlePermissions = async () => {
+      switch (Notification.permission) {
+        case 'denied':
+          return false;
+        case 'granted':
+          return true;
+        case 'default': {
+          const permission = await Notification.requestPermission();
+          return permission === 'granted';
+        }
+        default:
+          return false;
+      }
+    };
+
+    const handleNotification = async () => {
+      const permission = await handlePermissions();
+      if (!permission) {
+        return;
+      }
+      const latestEvent = roomEvents[roomEvents.length - 1];
+      if (
+        latestEvent.userID !== userID ||
+        latestEvent.msg_type !== MSG_TYPES.MESSAGE
+      ) {
+        return;
+      }
+      notification = new Notification('New Message', {
+        body: latestEvent.message,
+        icon: Logo,
+      });
+    };
+
+    document.addEventListener('visibilitychange', handleClose);
+    handleNotification();
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleClose);
+    };
+  }, [roomEvents, userID]);
 
   if (!isLoggedIn) {
     return (
