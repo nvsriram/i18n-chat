@@ -3,10 +3,10 @@ import { createAvatar } from '@dicebear/core';
 import { useEffect, useMemo, useState } from 'react';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
+import Logo from './assets/logo.png';
 import Chatroom from './pages/Chatroom';
 import JoinRoom from './pages/JoinRoom';
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
-import Logo from './assets/logo.png';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
