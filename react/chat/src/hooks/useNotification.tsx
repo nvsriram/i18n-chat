@@ -1,3 +1,4 @@
+import { INACTIVE_DURATION } from '@/constants';
 import { IRoomEvent, MSG_TYPES } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -9,6 +10,9 @@ interface INotification {
 export const useNotification = ({ events, userID }: INotification) => {
   const [lastActive, setLastActive] = useState<number | null>(null);
   const [isInactive, setIsInactive] = useState(false);
+  const [inactiveTimeout, setInactiveTimeout] = useState<NodeJS.Timeout | null>(
+    null,
+  );
   const [notification, setNotification] = useState<Notification | null>(null);
 
   const latestEvent = events.length > 0 ? events[events.length - 1] : null;
@@ -28,6 +32,20 @@ export const useNotification = ({ events, userID }: INotification) => {
   const handleIdle = useCallback(() => {
     setLastActive(Date.now());
   }, []);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
+
+    timeout = setTimeout(() => {
+      setIsInactive(true);
+    }, INACTIVE_DURATION);
+
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+    };
+  }, [lastActive]);
 
   const handlePermissions = async () => {
     switch (Notification.permission) {
