@@ -1,4 +1,5 @@
 import { INACTIVE_DURATION } from '@/constants';
+import { parseDate } from '@/helpers/ParseDate';
 import { IRoomEvent, MSG_TYPES } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -8,44 +9,43 @@ interface INotification {
 }
 
 export const useNotification = ({ events, userID }: INotification) => {
-  const [lastActive, setLastActive] = useState<number | null>(null);
   const [isInactive, setIsInactive] = useState(false);
-  const [inactiveTimeout, setInactiveTimeout] = useState<NodeJS.Timeout | null>(
-    null,
-  );
+  const [inactiveTimeout, setInactiveTimeout] = useState<NodeJS.Timeout>();
   const [notification, setNotification] = useState<Notification | null>(null);
 
   const latestEvent = events.length > 0 ? events[events.length - 1] : null;
+
+  if (latestEvent) {
+    console.log(parseDate(latestEvent.timestamp));
+  }
+
+  const handleInactive = useCallback(
+    (isInactive: boolean) => {
+      clearTimeout(inactiveTimeout);
+      setIsInactive(isInactive);
+      if (isInactive) {
+        setInactiveTimeout(undefined);
+      } else {
+        const timeout = setTimeout(
+          () => setIsInactive(true),
+          INACTIVE_DURATION,
+        );
+        setInactiveTimeout(timeout);
+      }
+    },
+    [inactiveTimeout],
+  );
 
   const handleVisibility = useCallback(() => {
     if (document.visibilityState === 'visible') {
       if (notification != null) {
         notification.close();
       }
-      setLastActive(Date.now());
-      setIsInactive(false);
+      handleInactive(false);
     } else {
-      setIsInactive(true);
+      handleInactive(true);
     }
-  }, [notification]);
-
-  const handleIdle = useCallback(() => {
-    setLastActive(Date.now());
-  }, []);
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout | null = null;
-
-    timeout = setTimeout(() => {
-      setIsInactive(true);
-    }, INACTIVE_DURATION);
-
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [lastActive]);
+  }, [notification, handleInactive]);
 
   const handlePermissions = async () => {
     switch (Notification.permission) {
@@ -66,6 +66,9 @@ export const useNotification = ({ events, userID }: INotification) => {
     if (!latestEvent) {
       return;
     }
+    if (!isInactive) {
+      return;
+    }
     const permission = await handlePermissions();
     if (!permission) {
       return;
@@ -81,21 +84,22 @@ export const useNotification = ({ events, userID }: INotification) => {
       icon: 'Logo',
     });
     setNotification(notification);
-  }, [latestEvent, userID]);
+  }, [latestEvent, userID, isInactive]);
 
   useEffect(() => {
-    document.onmousemove = handleIdle;
-    document.onmousedown = handleIdle;
-    document.ontouchstart = handleIdle;
-    document.onclick = handleIdle;
-    document.onkeydown = handleIdle;
-    document.addEventListener('scroll', handleIdle, true);
+    const handleInactiveFalse = () => handleInactive(false);
+    document.onmousemove = handleInactiveFalse;
+    document.onmousedown = handleInactiveFalse;
+    document.ontouchstart = handleInactiveFalse;
+    document.onclick = handleInactiveFalse;
+    document.onkeydown = handleInactiveFalse;
+    document.addEventListener('scroll', handleInactiveFalse, true);
     document.addEventListener('visibilitychange', handleVisibility);
     handleNotification();
 
     return () => {
-      document.removeEventListener('scroll', handleIdle, true);
+      document.removeEventListener('scroll', handleInactiveFalse, true);
       document.removeEventListener('visibilitychange', handleVisibility);
     };
-  }, [handleVisibility, handleNotification, handleIdle]);
+  }, [handleVisibility, handleNotification, handleInactive]);
 };
