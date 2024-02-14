@@ -19,17 +19,20 @@ export const MessageText: FC<IMessageText> = ({
 
   const translateText = useCallback(
     async (roomEvent: IRoomEvent) => {
-      const data = await fetch(`${LIBRE_BASE_URL}/translate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const data = await fetch(
+        `${import.meta.env.VITE_LIBRE_BASE_URL}/translate`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            q: roomEvent.message,
+            source: roomEvent.lang,
+            target: lang,
+          }),
         },
-        body: JSON.stringify({
-          q: roomEvent.message,
-          source: roomEvent.lang,
-          target: lang,
-        }),
-      })
+      )
         .then((res) => res.json())
         .then((data) => data);
       return data.translatedText;
