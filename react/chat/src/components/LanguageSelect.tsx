@@ -21,7 +21,7 @@ export const LanguageSelect: FC = () => {
   }, [formContext]);
 
   useEffect(() => {
-    fetch(`${LIBRE_BASE_URL}/languages`)
+    fetch(`${import.meta.env.VITE_LIBRE_BASE_URL}/languages`)
       .then((res) => res.json())
       .then((data) => setLanguagesList(data));
   }, []);
