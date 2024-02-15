@@ -7,6 +7,7 @@ import Logo from './assets/logo.png';
 import Chatroom from './pages/Chatroom';
 import JoinRoom from './pages/JoinRoom';
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
+import { useNotification } from './hooks/useNotification';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -18,6 +19,8 @@ const App = () => {
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [roomEvents, setRoomEvents] = useState<IRoomEvent[]>([]);
+
+  useNotification({ events: roomEvents, userID });
 
   const avatars: IAvatar = useMemo(() => {
     const newAvatars: IAvatar = {};
