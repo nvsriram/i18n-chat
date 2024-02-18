@@ -4,10 +4,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
 import Logo from './assets/logo.png';
+import { useNotification } from './hooks/useNotification';
 import Chatroom from './pages/Chatroom';
 import JoinRoom from './pages/JoinRoom';
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
-import { useNotification } from './hooks/useNotification';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
