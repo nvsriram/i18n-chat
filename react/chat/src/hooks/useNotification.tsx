@@ -1,7 +1,8 @@
+import { useCallback, useEffect, useState } from 'react';
+
 import { INACTIVE_DURATION } from '@/constants';
 import { parseDate } from '@/helpers/ParseDate';
 import { IRoomEvent, MSG_TYPES } from '@/types';
-import { useCallback, useEffect, useState } from 'react';
 
 interface INotification {
   events: IRoomEvent[];
