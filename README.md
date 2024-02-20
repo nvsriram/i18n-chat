@@ -98,10 +98,10 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 
 ### Backend
 
-1. Navigate to the `django` directory and install all dependencies using `pip install -r requirements.txt` <br />**NOTE:** Highly recommend using `venv` for the backend setup
-2. Run `python manage.py makemigrations` followed by `python manage.py migrate` to create the tables in the SQLite3 DB and migrate
-3. Run `python manage.py runserver` to start the backend Django server
-   ``
+1. Navigate to the `python` directory and install all dependencies using `pip install -r requirements.txt` <br />**NOTE:** Highly recommend using `venv` for the backend setup
+2. Navigate to the `django` directory
+3. Run `python manage.py makemigrations` followed by `python manage.py migrate` to create the tables in the SQLite3 DB and migrate
+4. Run `python manage.py runserver` to start the backend Django server
 
 ### Frontend
 
@@ -110,6 +110,7 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 
 ```bash
 VITE_SERVER_URL='127.0.0.1:8000' # replace it with the backend server URL
+VITE_LIBRE_BASE_URL='https://libretranslate.de' # replace with libretranslate URL
 ```
 
 3. Run `npm run dev` to start the frontend server (defaults to `http://localhost:5173`)
