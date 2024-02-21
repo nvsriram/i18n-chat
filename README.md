@@ -103,6 +103,12 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 3. Run `python manage.py makemigrations` followed by `python manage.py migrate` to create the tables in the SQLite3 DB and migrate
 4. Run `python manage.py runserver` to start the backend Django server
 
+### LibreTranslate
+
+1. Navigate to the `python` directory and install all dependencies using `pip install -r requirements.txt` <br />**NOTE:** Highly recommend using `venv` for the backend setup
+2. Navigate to the `libretranslate` directory
+3. Run `python libretranslate` to start the libretranslate server
+
 ### Frontend
 
 1. Navigate to the `react/chat` directory and install all dependencies using `npm install`
