@@ -107,7 +107,7 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 
 1. Navigate to the `python` directory and install all dependencies using `pip install -r requirements.txt` <br />**NOTE:** Highly recommend using `venv` for the backend setup
 2. Navigate to the `libretranslate` directory
-3. Run `python libretranslate` to start the libretranslate server
+3. Run `libretranslate` to start the libretranslate language translation server
 
 ### Frontend
 
@@ -116,7 +116,7 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 
 ```bash
 VITE_SERVER_URL='127.0.0.1:8000' # replace it with the backend server URL
-VITE_LIBRE_BASE_URL='https://libretranslate.de' # replace with libretranslate URL
+VITE_LIBRE_BASE_URL='127.0.0.1:5000' # replace with libretranslate URL
 ```
 
 3. Run `npm run dev` to start the frontend server (defaults to `http://localhost:5173`)
