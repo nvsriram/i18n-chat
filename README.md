@@ -68,7 +68,12 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
   - Transmits the received event to the entire chat room by performing a `send`
   </details>
   <details>
-  <summary>Frontend</summary>
+  <summary>LibreTranslate</summary>
+
+  - Self-hosted [LibreTranslate](https://libretranslate.com/) server powers the user language selection and language translation [REST APIs](https://libretranslate.com/docs/)
+  </details>
+   <details>
+   <summary>Frontend</summary>
 
   - The frontend is setup using React - Typescript using [Vite](https://vitejs.dev/) as a SPA.
   - The `JoinRoom` component allows the user to enter the chat room they wish to join (or create), their name, and their preferred language and join the chat room.
