@@ -77,11 +77,6 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 
 </details>
 <details>
-<summary>LibreTranslate</summary>
-
-- Self-hosted [LibreTranslate](https://libretranslate.com/) server powers the user language selection and language translation [REST APIs](https://libretranslate.com/docs/)
-</details>
-<details>
 <summary>Frontend</summary>
 
 - The frontend is setup using React - Typescript using [Vite](https://vitejs.dev/) as a SPA.
@@ -95,6 +90,11 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 - Currently the database is a SQLite3 DB
 - The database would only need to store the messages and events for a single chat room session. Hence, high database scalability is not a requirement.
 
+</details>
+<details>
+<summary>LibreTranslate</summary>
+
+- Self-hosted [LibreTranslate](https://libretranslate.com/) server powers the user language selection and language translation [REST APIs](https://libretranslate.com/docs/)
 </details>
 
 ## 🛠️ Workflow
