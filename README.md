@@ -32,7 +32,8 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 - Supports creation of multiple chat rooms with multiple users at the same time without needing to sign-in
 - Generates a unique avatar based on the username to provide visual aid in the chatroom
 - Animated chat background that changes based on the number of active languages in the chatroom
-- Deletes the chatroom along with all its chat messages once the chatroom is inactive (when all users have left the chatroom) to ensure no user privacy is breached
+- Emits desktop notifications for new events when user is inactive (idle for a long time or not on active tab)
+- Deletes the chatroom along with all its chat messages once the chatroom is empty (when all users have left the chatroom) to ensure no user privacy is breached
 
 ## 💻 Tech Stack
 
