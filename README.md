@@ -108,8 +108,9 @@ https://github.com/nvsriram/i18n-chat/assets/50625504/5d95619f-24c1-482b-b017-12
 6. When the user sends a message, the client send a "message" `msg_type` message to the server
 7. The server `receives`s the message, generates the `timestamp`, and transmits the "message" message to the entire chat room
 8. The client receives the "message" message and displays it in the `Chatroom` component (translating to the user's chosen `lang` based on the Translation switch)
-9. When the client disconnects, the server accepts the `disconnect` request, generates the `timestamp` and transmits the "leave" message to the entire chat room
-10. Once all users have left the chat room, the chat room is deleted
+9. When the client switches tabs or is idle for an extended period, the client is considered inactive and desktop notifications are triggered upon every new chat room event.
+10. When the client disconnects, the server accepts the `disconnect` request, generates the `timestamp` and transmits the "leave" message to the entire chat room
+11. Once all users have left the chat room, the chat room is deleted
 
 ## 🧑‍💻 Getting Started
 
