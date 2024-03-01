@@ -32,10 +32,6 @@ export const useNotification = ({ events, userID }: INotification) => {
     return null;
   }, [events, lastActive, isVisible]);
 
-  if (latestEvent) {
-    console.log(parseDate(latestEvent.timestamp));
-  }
-
   const handleVisibility = useCallback(() => {
     if (document.visibilityState === 'visible') {
       if (notification != null) {
