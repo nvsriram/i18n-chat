@@ -3,9 +3,9 @@ import { FC } from 'react';
 
 import { TranslationSwitch } from '@/components/TranslationSwitch';
 import { setFn } from '@/types';
+import { useAuth } from '@/hooks';
 
 interface INavbar {
-  room: string;
   username: string;
   avatar: string;
   shouldTranslate: boolean;
@@ -13,12 +13,13 @@ interface INavbar {
 }
 
 export const Navbar: FC<INavbar> = ({
-  room,
   username,
   avatar,
   shouldTranslate,
   setShouldTranslate,
 }) => {
+  const { roomName } = useAuth();
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -37,7 +38,7 @@ export const Navbar: FC<INavbar> = ({
     >
       <Toolbar sx={{ display: 'grid', gridTemplateColumns: '1fr 3fr 1fr' }}>
         <Typography component="h5" sx={{ gridColumn: '1/2' }} variant="h5">
-          {room}
+          {roomName}
         </Typography>
         <div
           style={{
