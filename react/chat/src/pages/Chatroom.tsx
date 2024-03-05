@@ -12,11 +12,10 @@ import {
   TextInput,
 } from '@/components';
 import { validateInputs } from '@/helpers';
-import { useTitle } from '@/hooks';
+import { useAuth, useTitle } from '@/hooks';
 import { IAvatar, IFormInputs, IMessage, IRoomEvent } from '@/types';
 
 interface IChatroom {
-  room: string;
   username: string;
   lang: string;
   roomEvents: IRoomEvent[];
@@ -26,7 +25,6 @@ interface IChatroom {
 }
 
 const Chatroom: FC<IChatroom> = ({
-  room,
   username,
   lang,
   roomEvents,
@@ -36,7 +34,9 @@ const Chatroom: FC<IChatroom> = ({
 }) => {
   const [shouldTranslate, setShouldTranslate] = useState(false);
 
-  useTitle(room);
+  const { roomName } = useAuth();
+
+  useTitle(roomName);
 
   const lastDivRef = useRef<HTMLDivElement>(null);
 
@@ -84,7 +84,6 @@ const Chatroom: FC<IChatroom> = ({
     >
       <Navbar
         avatar={avatars[username]}
-        room={room}
         setShouldTranslate={setShouldTranslate}
         shouldTranslate={shouldTranslate}
         username={username}
