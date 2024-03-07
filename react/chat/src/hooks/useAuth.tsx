@@ -4,14 +4,6 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomName, setRoomName] = useState<string>('');
 
-  useEffect(() => {
-    const room = localStorage.getItem('room');
-    if (room != null) {
-      setIsLoggedIn(true);
-      setRoomName(room);
-    }
-  }, []);
-
   const login = useCallback((roomName: string) => {
     localStorage.setItem('room', roomName);
     setIsLoggedIn(true);
@@ -23,6 +15,17 @@ export const useAuth = () => {
     setIsLoggedIn(false);
     setRoomName('');
   }, []);
+
+  useEffect(() => {
+    const room = localStorage.getItem('room');
+    if (room != null) {
+      setIsLoggedIn(true);
+      setRoomName(room);
+    }
+    return () => {
+      logout();
+    };
+  }, [logout]);
 
   return { isLoggedIn, roomName, login, logout };
 };
