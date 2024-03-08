@@ -8,10 +8,9 @@ import { useNotification } from './hooks/useNotification';
 import Chatroom from './pages/Chatroom';
 import JoinRoom from './pages/JoinRoom';
 import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
+import { useAuth } from './hooks';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [roomName, setRoomName] = useState('');
   const [userID, setUserID] = useState(-1);
   const [username, setUsername] = useState('');
   const [lang, setLang] = useState('en');
@@ -19,6 +18,8 @@ const App = () => {
 
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [roomEvents, setRoomEvents] = useState<IRoomEvent[]>([]);
+
+  const { isLoggedIn, roomName } = useAuth();
 
   useNotification({ events: roomEvents, userID });
 
@@ -196,14 +197,7 @@ const App = () => {
   }, [roomEvents, userID]);
 
   if (!isLoggedIn) {
-    return (
-      <JoinRoom
-        setIsLoggedIn={setIsLoggedIn}
-        setLang={setLang}
-        setRoomName={setRoomName}
-        setUsername={setUsername}
-      />
-    );
+    return <JoinRoom setLang={setLang} setUsername={setUsername} />;
   }
 
   return (
@@ -211,7 +205,6 @@ const App = () => {
       avatars={avatars}
       lang={lang}
       messages={messages}
-      room={roomName}
       roomEvents={roomEvents}
       username={username}
       onButtonClicked={sendMessage}
