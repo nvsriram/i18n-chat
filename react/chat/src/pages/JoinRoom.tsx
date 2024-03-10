@@ -4,8 +4,8 @@ import { FC } from 'react';
 import Logo from '@/assets/logo.png';
 import { FormSubmit, InputForm, LanguageSelect, TextInput } from '@/components';
 import { validateInputs } from '@/helpers';
-import { IFormInputs, setFn } from '@/types';
 import { useAuth } from '@/hooks';
+import { IFormInputs, setFn } from '@/types';
 
 interface IJoinRoom {
   setUsername: setFn<string>;
