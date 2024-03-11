@@ -2,8 +2,8 @@ import { Paper, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import { FC } from 'react';
 
 import { TranslationSwitch } from '@/components/TranslationSwitch';
-import { setFn } from '@/types';
 import { useAuth } from '@/hooks';
+import { setFn } from '@/types';
 
 interface INavbar {
   username: string;
