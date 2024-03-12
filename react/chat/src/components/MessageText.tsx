@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material';
 import { FC, useCallback, useEffect, useState } from 'react';
 
-import { LIBRE_BASE_URL } from '@/constants';
 import { IRoomEvent } from '@/types';
 
 interface IMessageText {
