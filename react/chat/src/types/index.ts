@@ -14,6 +14,12 @@ export type Language = {
   targets: ['string'];
 };
 
+export type User = {
+  username: string;
+  roomName: string;
+  lang: string;
+};
+
 export interface IMessage {
   message: string;
   timestamp: string;
