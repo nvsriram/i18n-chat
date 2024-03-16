@@ -1,31 +1,40 @@
+import { User } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomName, setRoomName] = useState<string>('');
+  const [user, setUser] = useState<User>();
 
-  const login = useCallback((roomName: string) => {
-    localStorage.setItem('room', roomName);
+  const login = useCallback((user: User) => {
+    localStorage.setItem('user', JSON.stringify(user));
     setIsLoggedIn(true);
-    setRoomName(roomName);
+    setUser(user);
   }, []);
 
   const logout = useCallback(() => {
-    localStorage.removeItem('room');
+    localStorage.removeItem('user');
     setIsLoggedIn(false);
-    setRoomName('');
+    setUser(undefined);
   }, []);
 
   useEffect(() => {
-    const room = localStorage.getItem('room');
-    if (room != null) {
+    const userJSON = localStorage.getItem('user');
+    if (userJSON != null) {
       setIsLoggedIn(true);
-      setRoomName(room);
+      try {
+        const user = JSON.parse(userJSON);
+        setUser(user);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.log(err.message);
+        }
+      }
     }
     return () => {
       logout();
     };
   }, [logout]);
 
-  return { isLoggedIn, roomName, login, logout };
+  return { isLoggedIn, user, login, logout };
 };
