@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react';
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [roomName, setRoomName] = useState<string>('');
   const [user, setUser] = useState<User>();
 
   const login = useCallback((user: User) => {
