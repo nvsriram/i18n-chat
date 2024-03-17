@@ -19,7 +19,7 @@ const App = () => {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [roomEvents, setRoomEvents] = useState<IRoomEvent[]>([]);
 
-  const { isLoggedIn, roomName } = useAuth();
+  const { isLoggedIn, user } = useAuth();
 
   useNotification({ events: roomEvents, userID });
 
