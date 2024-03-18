@@ -38,7 +38,8 @@ const App = () => {
   }, [roomEvents]);
 
   useEffect(() => {
-    if (!isLoggedIn || userID > 0) return;
+    if (!isLoggedIn || userID > 0 || !user) return;
+    const { roomName, username, lang } = user;
     const newClient = new W3CWebSocket(
       `ws://${import.meta.env.VITE_SERVER_URL}/ws/chat/${roomName}/`,
     );
@@ -120,7 +121,7 @@ const App = () => {
         }
       }
     };
-  }, [isLoggedIn, lang, username, roomName, userID]);
+  }, [isLoggedIn, user, userID]);
 
   const sendMessage = (input: string) => {
     if (client == null) {
