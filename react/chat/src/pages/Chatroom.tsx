@@ -34,8 +34,9 @@ const Chatroom: FC<IChatroom> = ({
 }) => {
   const [shouldTranslate, setShouldTranslate] = useState(false);
 
-  const { roomName } = useAuth();
+  const { user } = useAuth();
 
+  const roomName = user?.roomName ?? 'room';
   useTitle(roomName);
 
   const lastDivRef = useRef<HTMLDivElement>(null);
@@ -68,6 +69,10 @@ const Chatroom: FC<IChatroom> = ({
   useEffect(() => {
     lastDivRef?.current?.scrollIntoView({ behavior: 'smooth' });
   }, [roomEvents]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Box
