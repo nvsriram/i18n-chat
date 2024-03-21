@@ -12,8 +12,6 @@ import { IAvatar, IMessage, IRoomEvent, MSG_TYPES } from './types';
 
 const App = () => {
   const [userID, setUserID] = useState(-1);
-  const [username, setUsername] = useState('');
-  const [lang, setLang] = useState('en');
   const [client, setClient] = useState<W3CWebSocket | null>(null);
 
   const [messages, setMessages] = useState<IMessage[]>([]);
@@ -198,16 +196,14 @@ const App = () => {
   }, [roomEvents, userID]);
 
   if (!isLoggedIn) {
-    return <JoinRoom setLang={setLang} setUsername={setUsername} />;
+    return <JoinRoom />;
   }
 
   return (
     <Chatroom
       avatars={avatars}
-      lang={lang}
       messages={messages}
       roomEvents={roomEvents}
-      username={username}
       onButtonClicked={sendMessage}
     />
   );
