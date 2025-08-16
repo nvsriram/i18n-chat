@@ -18,12 +18,16 @@ export const Navbar: FC<INavbar> = ({
   shouldTranslate,
   setShouldTranslate,
 }) => {
-  const { roomName } = useAuth();
+  const { user } = useAuth();
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
   });
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Paper
@@ -38,7 +42,7 @@ export const Navbar: FC<INavbar> = ({
     >
       <Toolbar sx={{ display: 'grid', gridTemplateColumns: '1fr 3fr 1fr' }}>
         <Typography component="h5" sx={{ gridColumn: '1/2' }} variant="h5">
-          {roomName}
+          {user.roomName}
         </Typography>
         <div
           style={{
