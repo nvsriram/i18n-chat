@@ -122,17 +122,15 @@ const App = () => {
   }, [isLoggedIn, user, userID]);
 
   const sendMessage = (input: string) => {
-    if (client == null) {
-      return;
-    }
+    if (!isLoggedIn || !user || !client) return;
     try {
       client.send(
         JSON.stringify({
           msg_type: MSG_TYPES.MESSAGE,
           message: input,
           user_id: userID,
-          username,
-          lang,
+          username: user.username,
+          lang: user.lang,
         }),
       );
     } catch (err) {
