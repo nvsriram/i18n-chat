@@ -13,7 +13,7 @@ const TimeAgoFixed = TimeAgo as unknown as Component<TimeAgoProps> & {
 interface IMessageCard {
   roomEvents: IRoomEvent[];
   messages: IMessage[];
-  currentUser: string | number;
+  currentUser: string;
   lang: string;
   avatars: IAvatar;
   shouldTranslate: boolean;
