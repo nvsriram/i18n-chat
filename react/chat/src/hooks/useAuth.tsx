@@ -26,7 +26,7 @@ export const useAuth = () => {
         setUser(user);
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err.message);
+          console.error(err.message);
         }
       }
     }

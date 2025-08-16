@@ -55,7 +55,7 @@ const App = () => {
           );
         } catch (err) {
           if (err instanceof Error) {
-            console.log(err.message);
+            console.error(err.message);
           }
         }
       }
@@ -63,7 +63,7 @@ const App = () => {
 
     newClient.onmessage = (message) => {
       if (typeof message.data != 'string') {
-        console.log('invalid message data');
+        console.error('invalid message data');
         return;
       }
       try {
@@ -110,12 +110,12 @@ const App = () => {
               ]);
               break;
             default:
-              console.log('unexpected msg_type', msg_type);
+              console.error('unexpected msg_type', msg_type);
           }
         }
       } catch (err) {
         if (err instanceof Error) {
-          console.log(err.message);
+          console.error(err.message);
         }
       }
     };
@@ -137,7 +137,7 @@ const App = () => {
       );
     } catch (err) {
       if (err instanceof Error) {
-        console.log(err.message);
+        console.error(err.message);
       }
     }
   };
