@@ -16,8 +16,6 @@ import { useAuth, useTitle } from '@/hooks';
 import { IAvatar, IFormInputs, IMessage, IRoomEvent } from '@/types';
 
 interface IChatroom {
-  username: string;
-  lang: string;
   roomEvents: IRoomEvent[];
   messages: IMessage[];
   avatars: IAvatar;
@@ -25,8 +23,6 @@ interface IChatroom {
 }
 
 const Chatroom: FC<IChatroom> = ({
-  username,
-  lang,
   roomEvents,
   messages,
   avatars,
@@ -88,10 +84,10 @@ const Chatroom: FC<IChatroom> = ({
       }}
     >
       <Navbar
-        avatar={avatars[username]}
+        avatar={avatars[user.username]}
         setShouldTranslate={setShouldTranslate}
         shouldTranslate={shouldTranslate}
-        username={username}
+        username={user.username}
       />
       <Paper
         square
@@ -112,8 +108,8 @@ const Chatroom: FC<IChatroom> = ({
       >
         <MessageCard
           avatars={avatars}
-          currentUser={username}
-          lang={lang}
+          currentUser={user.username}
+          lang={user.lang}
           messages={messages}
           roomEvents={roomEvents}
           shouldTranslate={shouldTranslate}
