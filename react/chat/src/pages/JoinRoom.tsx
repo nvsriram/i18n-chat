@@ -5,20 +5,18 @@ import Logo from '@/assets/logo.png';
 import { FormSubmit, InputForm, LanguageSelect, TextInput } from '@/components';
 import { validateInputs } from '@/helpers';
 import { useAuth } from '@/hooks';
-import { IFormInputs, setFn } from '@/types';
+import { IFormInputs, User } from '@/types';
 
-interface IJoinRoom {
-  setUsername: setFn<string>;
-  setLang: setFn<string>;
-}
-
-const JoinRoom: FC<IJoinRoom> = ({ setUsername, setLang }) => {
+const JoinRoom: FC = () => {
   const { login } = useAuth();
 
   const setValues = (inputs: IFormInputs) => {
-    setUsername(inputs['Username'].value);
-    setLang(inputs['Lang'].value);
-    login(inputs['Room Name'].value);
+    const user: User = {
+      username: inputs['Username'].value,
+      roomName: inputs['Room Name'].value,
+      lang: inputs['Lang'].value,
+    };
+    login(user);
   };
 
   return (
