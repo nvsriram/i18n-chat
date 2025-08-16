@@ -1,5 +1,6 @@
-import { User } from '@/types';
 import { useCallback, useEffect, useState } from 'react';
+
+import { User } from '@/types';
 
 export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
